@@ -4,7 +4,7 @@ import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 const Nav = () => {
   return (
     <header
-      className="header_main sticky top-0 flex justify-between items-center"
+      className="header_main px-4 sticky top-0 flex justify-between items-center"
     >
       <div className=" gap-2 items-center hidden md:flex">
         <p className="text-sm">Philemon Forson</p>
