@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Light theme colors in :root */
+  :root {
+    --color-background: 255, 255, 255,1; 
+    --color-foreground: 15,23,42;    
+    --color-primary: 0, 122, 255;      
+    --color-secondary: 108, 117, 125;  
+    --accents-1: #fafafa;
+    --accents-2: #eaeaea;
+    --accents-3: #999;
+    --accents-4: #888;
+    --accents-5: #666;
+    --accents-6: #444;
+    --accents-7: #333;
+    --accents-8: #111;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --cross-row: 1;
+    --cross-column: 1;
+    --ds-gray-200-value: 0, 0%, 92%;
+    --guide-width: 1px;
+
+  }
+
+  /* Dark theme colors with .dark class */
+  .dark {
+    --color-background: 0,0,0,0.8;    
+    --color-foreground: 229, 229, 229; 
+    --color-primary: 10, 132, 255;     
+    --color-secondary: 144, 144, 144;  
+    --accents-8: #fafafa;
+    --accents-7: #eaeaea;
+    --accents-6: #999;
+    --accents-5: #888;
+    --accents-4: #666;
+    --accents-3: #444;
+    --accents-2: #333;
+    --accents-1: #111;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --ds-gray-200-value: 0, 0%, 12%;
+
+
+    }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+.header_main {
+    background: none;
+    width: 100%;
+    z-index: 1000;
+    padding: 0 24px;
+    height: 64px;
+    box-shadow: inset 0 -1px 0 0 var(--accents-2);
+    transform: translateZ(0);
+    -webkit-backdrop-filter: saturate(180%) blur(5px);
+    backdrop-filter: saturate(180%) blur(5px);
+    background: var(--background);
+}
+
+.grid_cross {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  pointer-events: none;
+  position: absolute;
+  grid-column-start: var(--cross-column);
+  grid-row-start: var(--cross-row);
+  z-index: 2;
+  --cross-size: 21px;
+  --cross-half-size: calc((var(--cross-size) / 2) + var(--guide-width) - 0.5px);
+  inset: calc(var(--cross-half-size)* -1);
+}
+
+.crosshair {
+  width: 20px; 
+  height: 20px;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: "";
+  position: absolute;
+  background-color: #b0b0b0; 
+}
+
+/* Horizontal line */
+.crosshair::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+/* Vertical line */
+.crosshair::after {
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
