@@ -21,8 +21,22 @@
     --muted-foreground: 240 3.8% 46.1%;
     --cross-row: 1;
     --cross-column: 1;
+    --ds-gray-100-value: 0, 0%, 95%;
     --ds-gray-200-value: 0, 0%, 92%;
     --guide-width: 1px;
+    --ds-shadow-border: 0 0 0 1px rgba(0, 0, 0, .08);
+    --ds-shadow-border-inset: inset 0 0 0 1px rgba(0, 0, 0, .08);
+    --ds-shadow-small: 0px 2px 2px rgba(0, 0, 0, .04);
+    --ds-shadow-border-small: var(--ds-shadow-border), var(--ds-shadow-small);
+    --ds-background-100: #fff;
+    --ds-background-200: #fafafa;
+    --ds-gray-alpha-200: rgba(0, 0, 0, .08);
+    --ds-gray-alpha-300: rgba(0, 0, 0, .1);
+    --ds-gray-alpha-400: rgba(0, 0, 0, .08);
+    --classic-card-border: from 180deg at 50% 50%, #ffcade 0deg, #e9d3ff 88.12deg, #c8ddff 176.25deg, #e9d3ff 264.38deg, #ffcade 1turn;
+    --gradient-bg: 135deg, #dff1ff 0%, #fde3f2 100%;
+    --window-card-diff: 48px;
+
 
   }
 
@@ -43,8 +57,33 @@
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
     --ds-gray-200-value: 0, 0%, 12%;
+    --ds-shadow-border: 0 0 0 1px hsla(0, 0%, 100%, .145);
+    --ds-shadow-small: 0px 1px 2px rgba(0, 0, 0, .16);
+    --ds-shadow-border-small: var(--ds-shadow-border), 0px 1px 2px rgba(0, 0, 0, .16);
+    --ds-background-100: #0a0a0a;
+    --ds-background-200: #000;
+    --ds-gray-100-value: 0, 0%, 10%;
+    --ds-gray-200-value: 0, 0%, 12%;
+    --ds-gray-alpha-200: hsla(0, 0%, 100%, .09);
+    --ds-gray-alpha-300: hsla(0, 0%, 100%, .13);
+    --ds-gray-alpha-400: hsla(0, 0%, 100%, .14);
+    --classic-card-border: from 180deg at 50% 50%, #ffcade40 0deg, #e9d3ff40 88.12deg, #c8ddff40 176.25deg, #e9d3ff40 264.38deg, #ffcade40 1turn;
+    --gradient-bg: 180deg, #0d0e13 0%, #161725 50%, #1c1d2e 100%
 
 
+    }
+
+    @media (max-width: 1024px) {
+      :root {
+        --window-card-diff: 48px;
+      }
+    }
+    
+    /* Small screens */
+    @media (max-width: 600px) {
+      :root {
+        --window-card-diff: 28px;
+      }
     }
 }
 
@@ -110,3 +149,42 @@ body {
   transform: translateX(-50%);
 }
 
+.classic-card:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid #0000;
+  border-radius: 12px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  background: conic-gradient(var(--classic-card-border));
+}
+
+.bg-gradient-background {
+  background: linear-gradient(var(--gradient-bg));
+}
+
+.bullet-pt::before {
+  content: "";
+  width: 10px;
+}
+
+.window-card {
+
+    background: var(--ds-background-100);
+    box-shadow: var(--ds-shadow-border);
+    position: relative;
+    margin-bottom: -15px;
+    z-index: 10;
+    opacity: 1;
+    transform: none;
+    border-radius: 16px 16px 0px 0px;
+    padding: 15px 20px 45px;
+
+}
+/* Define the background grid effect */

@@ -1,13 +1,16 @@
 import React from "react";
 import { BiCross } from "react-icons/bi";
+import Button from "../Button/Button";
+import { MdOutlineTouchApp } from "react-icons/md";
 
 const Landing = () => {
   return (
-    <section className="w-full h-[80vh] md:h-screen md:px-36 px-4 md:py-16 relative">
-      <div className="md:relative h-full md:h-auto ">
-        <div className="crosshair relative hidden md:block"></div>
-        <div className="md:border border-[hsla(var(--ds-gray-200-value),1)] h-full md:h-[30rem] md:w-[calc(100vw-21rem)] md:absolute md:top-[10px] md:left-[10px] md:px-28 flex flex-col justify-center md:gap-7 gap-4 items-center ">
-          <h1 className="md:text-4xl text-2xl font-semibold">
+    <section className="w-full h-[80vh] lg:px-36 px-4 lg:py-16 relative">
+      
+      <div className="lg:relative h-full lg:h-auto ">
+        <div className="crosshair relative hidden lg:block"></div>
+        <div className="lg:border border-[hsla(var(--ds-gray-200-value),1)] h-full lg:h-[30rem] lg:w-[calc(100vw-21rem)] lg:absolute lg:top-[10px] lg:left-[10px] lg:px-28 flex flex-col justify-center lg:gap-7 gap-4 ">
+          <h1 className="lg:text-4xl text-2xl font-semibold">
             Hi, I'm Philemon Forson — Software Developer & Data Engineer
           </h1>
           <p className="text-[hsl(var(--muted-foreground))] ">
@@ -19,8 +22,16 @@ const Landing = () => {
             analysis, and engineering, all aimed at driving efficiency and
             enhancing user experience.
           </p>
+          <div className="w-36">
+            <Button
+              text="Get in touch"
+              variant="primary"
+              icon={<MdOutlineTouchApp color="rgb(var(--color-foreground))" />}
+              customlink="mailto:forsonphilemon1@gmail.com"
+            />
+          </div>
         </div>
-        <div className="crosshair absolute top-[30rem] left-[calc(100vw-21rem)] hidden md:block"></div>
+        <div className="crosshair absolute top-[30rem] left-[calc(100vw-21rem)] hidden lg:block"></div>
       </div>
 
       {/* <p>Philemon Forson</p> */}
