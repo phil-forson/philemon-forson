@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaLock, FaRegCircle } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
 
 const experiences = [
   {
@@ -110,7 +110,6 @@ const ProfessionalExperience = () => {
 
               {exp.tasks?.map((task, index) => (
                 <li className="flex gap-1 items-start" key={index}>
-                  {/* <FaRegCircle size={"1em"} className=""/> */}
                   {"- "}{task}
                 </li>
               ))}
