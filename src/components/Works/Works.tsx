@@ -1,11 +1,11 @@
 import React from "react";
 import { AiOutlineProject } from "react-icons/ai";
-import JobCard from "../JobCard";
-import ProfessionalExperience from "../ProfessionalExperience";
+import JobCard from "./JobCard";
+import ProfessionalExperience from "./ProfessionalExperience";
 
 const Works = () => {
   return (
-    <div className="h-auto md:px-36 md:py-16 w-full">
+    <div className="h-auto md:px-36 md:py-16 w-full px-4">
       <h1 className="md:text-4xl text-2xl font-semibold text-center flex items-center gap-2 justify-center">
         Professional Experience <AiOutlineProject size={24} />
       </h1>

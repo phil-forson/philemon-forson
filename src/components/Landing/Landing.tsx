@@ -13,7 +13,7 @@ const Landing = () => {
           <h1 className="lg:text-4xl text-2xl font-semibold">
             Hi, I'm Philemon Forson — Software Developer & Data Engineer
           </h1>
-          <p className="text-[hsl(var(--muted-foreground))] ">
+          <p className="text-[(var(--muted-foreground)] ">
             {" "}
             I specialize in building scalable applications and data-driven
             solutions, with expertise in developing dynamic web applications,

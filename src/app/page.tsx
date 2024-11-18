@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer/Footer";
 import Landing from "@/components/Landing/Landing";
 import Nav from "@/components/Nav/Nav";
 import Works from "@/components/Works/Works";
@@ -8,6 +9,7 @@ export default function Home() {
       <Nav />
       <Landing />
       <Works />
+      <Footer />
     </div>
   );
 }

@@ -8,7 +8,7 @@ const Nav = () => {
     >
       <div className=" gap-2 items-center hidden md:flex">
         <p className="text-sm">Philemon Forson</p>
-        <p className="px-2 py-1 text-xs bg-[hsl(var(--muted))] rounded-md">
+        <p className="px-2 py-1 text-xs bg-[var(--muted)] rounded-md">
           Software Developer And Data Engineer
         </p>
       </div>
