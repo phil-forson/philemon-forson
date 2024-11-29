@@ -1,11 +1,18 @@
-import React from 'react'
+import React from "react";
 
 const Footer = () => {
   return (
-    <div className='flex h-auto md:px-36 md:py-16 px-4 py-8 border-t border-[var(--)] w-full'>
-        <div></div>
+    <div className="h-auto md:px-36 md:py-16 px-4 py-8 border-t border-[var(--)] w-full">
+      <div className="flex justify-center">
+        <div className="flex flex-col">
+          <p className="text-sm">Philemon Forson</p>
+          <p className="px-2 py-1 text-xs bg-[var(--muted)] rounded-md">
+            Software Developer And Data Engineer
+          </p>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

@@ -83,7 +83,7 @@ const ProfessionalExperience = () => {
                 <span className="w-3 h-3 rounded-full bg-green-500"></span>
               </div>
             </div>
-            <div className="bg-[hsla(var(--ds-gray-100-value),1)] w-52 md:w-72 py-2 rounded-lg flex items-center justify-center gap-2 text-[hsl(var(--muted-foreground))]">
+            <div className="bg-[(var(--ds-gray-100-value)] w-52 md:w-72 py-2 rounded-lg flex items-center justify-center gap-2 text-[hsl(var(--muted-foreground))]">
               <FaLock size={10} />
 
               <h2 className="text-[10px] md:text-sm font-[family-name:var(--font-geist-mono)]">

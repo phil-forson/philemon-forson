@@ -5,10 +5,10 @@
 @layer base {
   /* Light theme colors in :root */
   :root {
-    --color-background: 255, 255, 255,1; 
-    --color-foreground: 15,23,42;    
-    --color-primary: 0, 122, 255;      
-    --color-secondary: 108, 117, 125;  
+    --color-background: 255, 255, 255, 1;
+    --color-foreground: 15, 23, 42;
+    --color-primary: 0, 122, 255;
+    --color-secondary: 108, 117, 125;
     --accents-1: #fafafa;
     --accents-2: #eaeaea;
     --accents-3: #999;
@@ -17,35 +17,38 @@
     --accents-6: #444;
     --accents-7: #333;
     --accents-8: #111;
-    --muted: 240 4.8% 95.9%;
+    --muted: hsl(240 4.8% 95.9%);
     --muted-foreground: 240 3.8% 46.1%;
     --cross-row: 1;
     --cross-column: 1;
-    --ds-gray-100-value: 0, 0%, 95%;
-    --ds-gray-200-value: 0, 0%, 92%;
+    --grid-cols-num: 7;
+    --grid-rows-num: 6;
+    --grid-cols-value: repeat(var(--grid-cols-num), minmax(0, 1fr));
+    --grid-rows-value: repeat(var(--grid-rows-num), minmax(0, 1fr));
+    --ds-gray-100-value: hsla(0, 0%, 95%, 1);
+    --ds-gray-200-value: hsla(0, 0%, 92%, 1);
     --guide-width: 1px;
-    --ds-shadow-border: 0 0 0 1px rgba(0, 0, 0, .08);
-    --ds-shadow-border-inset: inset 0 0 0 1px rgba(0, 0, 0, .08);
-    --ds-shadow-small: 0px 2px 2px rgba(0, 0, 0, .04);
+    --ds-shadow-border: 0 0 0 1px rgba(0, 0, 0, 0.08);
+    --ds-shadow-border-inset: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    --ds-shadow-small: 0px 2px 2px rgba(0, 0, 0, 0.04);
     --ds-shadow-border-small: var(--ds-shadow-border), var(--ds-shadow-small);
     --ds-background-100: #fff;
     --ds-background-200: #fafafa;
-    --ds-gray-alpha-200: rgba(0, 0, 0, .08);
-    --ds-gray-alpha-300: rgba(0, 0, 0, .1);
-    --ds-gray-alpha-400: rgba(0, 0, 0, .08);
-    --classic-card-border: from 180deg at 50% 50%, #ffcade 0deg, #e9d3ff 88.12deg, #c8ddff 176.25deg, #e9d3ff 264.38deg, #ffcade 1turn;
+    --ds-gray-alpha-200: rgba(0, 0, 0, 0.08);
+    --ds-gray-alpha-300: rgba(0, 0, 0, 0.1);
+    --ds-gray-alpha-400: rgba(0, 0, 0, 0.08);
+    --classic-card-border: from 180deg at 50% 50%, #ffcade 0deg,
+      #e9d3ff 88.12deg, #c8ddff 176.25deg, #e9d3ff 264.38deg, #ffcade 1turn;
     --gradient-bg: 135deg, #dff1ff 0%, #fde3f2 100%;
     --window-card-diff: 48px;
-
-
   }
 
   /* Dark theme colors with .dark class */
   .dark {
-    --color-background: 0,0,0,0.8;    
-    --color-foreground: 229, 229, 229; 
-    --color-primary: 10, 132, 255;     
-    --color-secondary: 144, 144, 144;  
+    --color-background: 0, 0, 0, 0.8;
+    --color-foreground: 229, 229, 229;
+    --color-primary: 10, 132, 255;
+    --color-secondary: 144, 144, 144;
     --accents-8: #fafafa;
     --accents-7: #eaeaea;
     --accents-6: #999;
@@ -57,34 +60,35 @@
     --muted: hsl(240 3.7% 15.9%);
     --muted-foreground: 240 5% 64.9%;
     --ds-gray-200-value: 0, 0%, 12%;
-    --ds-shadow-border: 0 0 0 1px hsla(0, 0%, 100%, .145);
-    --ds-shadow-small: 0px 1px 2px rgba(0, 0, 0, .16);
-    --ds-shadow-border-small: var(--ds-shadow-border), 0px 1px 2px rgba(0, 0, 0, .16);
+    --ds-shadow-border: 0 0 0 1px hsla(0, 0%, 100%, 0.145);
+    --ds-shadow-small: 0px 1px 2px rgba(0, 0, 0, 0.16);
+    --ds-shadow-border-small: var(--ds-shadow-border),
+      0px 1px 2px rgba(0, 0, 0, 0.16);
     --ds-background-100: #0a0a0a;
     --ds-background-200: #000;
-    --ds-gray-100-value: 0, 0%, 10%;
-    --ds-gray-200-value: 0, 0%, 12%;
-    --ds-gray-alpha-200: hsla(0, 0%, 100%, .09);
-    --ds-gray-alpha-300: hsla(0, 0%, 100%, .13);
-    --ds-gray-alpha-400: hsla(0, 0%, 100%, .14);
-    --classic-card-border: from 180deg at 50% 50%, #ffcade40 0deg, #e9d3ff40 88.12deg, #c8ddff40 176.25deg, #e9d3ff40 264.38deg, #ffcade40 1turn;
-    --gradient-bg: 180deg, #0d0e13 0%, #161725 50%, #1c1d2e 100%
+    --ds-gray-100-value: hsla(0, 0%, 10%, 1);
+    --ds-gray-200-value: hsla(0, 0%, 12%, 1);
+    --ds-gray-alpha-200: hsla(0, 0%, 100%, 0.09);
+    --ds-gray-alpha-300: hsla(0, 0%, 100%, 0.13);
+    --ds-gray-alpha-400: hsla(0, 0%, 100%, 0.14);
+    --classic-card-border: from 180deg at 50% 50%, #ffcade40 0deg,
+      #e9d3ff40 88.12deg, #c8ddff40 176.25deg, #e9d3ff40 264.38deg,
+      #ffcade40 1turn;
+    --gradient-bg: 180deg, #0d0e13 0%, #161725 50%, #1c1d2e 100%;
+  }
 
+  @media (max-width: 1024px) {
+    :root {
+      --window-card-diff: 48px;
+    }
+  }
 
+  /* Small screens */
+  @media (max-width: 600px) {
+    :root {
+      --window-card-diff: 28px;
     }
-
-    @media (max-width: 1024px) {
-      :root {
-        --window-card-diff: 48px;
-      }
-    }
-    
-    /* Small screens */
-    @media (max-width: 600px) {
-      :root {
-        --window-card-diff: 28px;
-      }
-    }
+  }
 }
 
 body {
@@ -93,15 +97,15 @@ body {
 }
 
 .header_main {
-    background: none;
-    width: 100%;
-    z-index: 1000;
-    height: 64px;
-    box-shadow: inset 0 -1px 0 0 var(--accents-2);
-    transform: translateZ(0);
-    -webkit-backdrop-filter: saturate(180%) blur(5px);
-    backdrop-filter: saturate(180%) blur(5px);
-    background: var(--background);
+  background: none;
+  width: 100%;
+  z-index: 1000;
+  height: 64px;
+  box-shadow: inset 0 -1px 0 0 var(--accents-2);
+  transform: translateZ(0);
+  -webkit-backdrop-filter: saturate(180%) blur(5px);
+  backdrop-filter: saturate(180%) blur(5px);
+  background: var(--background);
 }
 
 .grid_cross {
@@ -116,19 +120,20 @@ body {
   z-index: 2;
   --cross-size: 21px;
   --cross-half-size: calc((var(--cross-size) / 2) + var(--guide-width) - 0.5px);
-  inset: calc(var(--cross-half-size)* -1);
+  inset: calc(var(--cross-half-size) * -1);
 }
 
 .crosshair {
-  width: 20px; 
+  width: 20px;
   height: 20px;
+  /* --grid-rows-num: calc(var(--grid-rows-num) + 1) */
 }
 
 .crosshair::before,
 .crosshair::after {
   content: "";
   position: absolute;
-  background-color: #b0b0b0; 
+  background-color: #b0b0b0;
 }
 
 /* Horizontal line */
@@ -148,6 +153,88 @@ body {
   height: 100%;
   transform: translateX(-50%);
 }
+
+.grid-background {
+  background-image: linear-gradient(
+      to right,
+      var(--ds-gray-200-value) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--ds-gray-200-value) 1px, transparent 1px);
+  background-size: calc(100% / var(--grid-cols-num))
+    calc(100% / var(--grid-rows-num));
+}
+
+.gradient-border {
+  margin: 0 auto;
+  width: auto;
+  background-color: transparent !important;
+  position: relative;
+}
+
+.gradient-border::after, .gradient-border::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* background-image: conic-gradient(#ff4545, #00ff99, #006aff, #ff0095, #ff4545); */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  border-radius: inherit;
+  padding: 3px;
+}
+
+.gradient-border::before {
+  filter: blur(1.5rem);
+
+}
+
+.card{
+  margin: 0 auto;
+  padding: 2em;
+  width: 300px;
+  background: #1c1f2b;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+}
+
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.card::after, .card::before{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 3px;
+  border-radius: 10px;
+  animation: 3s spin linear infinite;
+}
+.card::before{
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+@keyframes spin{
+  from{
+    --angle: 0deg;
+  }
+  to{
+    --angle: 360deg;
+  }
+}
+
+/* Keyframes for Gradient Animation */
 
 .classic-card:before {
   content: "";
@@ -175,22 +262,21 @@ body {
 }
 
 .window-card {
-
-    background: var(--ds-background-100);
-    box-shadow: var(--ds-shadow-border);
-    position: relative;
-    margin-bottom: -15px;
-    z-index: 10;
-    opacity: 1;
-    transform: none;
-    border-radius: 16px 16px 0px 0px;
-    padding: 15px 20px 45px;
-
+  background: var(--ds-background-100);
+  box-shadow: var(--ds-shadow-border);
+  position: relative;
+  margin-bottom: -15px;
+  z-index: 10;
+  opacity: 1;
+  transform: none;
+  border-radius: 16px;
+  padding: 15px;
+  cursor: pointer;
 }
 
 .domains_div {
   mask-image: linear-gradient(0deg, transparent, #000 30px);
   width: 100%;
-    padding: 1px 1px 0;
+  padding: 1px 1px 0;
 }
 /* Define the background grid effect */
