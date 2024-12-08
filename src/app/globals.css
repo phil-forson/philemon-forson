@@ -97,7 +97,7 @@
   @media (max-width: 600px) {
     :root {
       --window-card-diff: 28px;
-      --grid-cols-num: 15;
+      --grid-cols-num: 10;
       --grid-rows-num: 15;
     }
   }
