@@ -41,6 +41,11 @@
       #e9d3ff 88.12deg, #c8ddff 176.25deg, #e9d3ff 264.38deg, #ffcade 1turn;
     --gradient-bg: 135deg, #dff1ff 0%, #fde3f2 100%;
     --window-card-diff: 48px;
+    --send-bg: #0B93F6;
+    --send-color: white;
+    --receive-color: hsl(var(--muted-foreground));
+    --receive-bg: var(--ds-gray-100-value);
+    --receive-text: black;
   }
 
   /* Dark theme colors with .dark class */
@@ -75,11 +80,16 @@
       #e9d3ff40 88.12deg, #c8ddff40 176.25deg, #e9d3ff40 264.38deg,
       #ffcade40 1turn;
     --gradient-bg: 180deg, #0d0e13 0%, #161725 50%, #1c1d2e 100%;
+    --receive-color: white;
+    --receive-bg: var(--ds-gray-100-value);
+
   }
 
   @media (max-width: 1024px) {
     :root {
       --window-card-diff: 48px;
+      /* --grid-cols-num: 6;
+      --grid-rows-num: 5; */
     }
   }
 
@@ -87,6 +97,8 @@
   @media (max-width: 600px) {
     :root {
       --window-card-diff: 28px;
+      --grid-cols-num: 15;
+      --grid-rows-num: 15;
     }
   }
 }
@@ -172,7 +184,8 @@ body {
   position: relative;
 }
 
-.gradient-border::after, .gradient-border::before {
+.gradient-border::after,
+.gradient-border::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -188,10 +201,9 @@ body {
 
 .gradient-border::before {
   filter: blur(1.5rem);
-
 }
 
-.card{
+.card {
   margin: 0 auto;
   padding: 2em;
   width: 300px;
@@ -201,18 +213,26 @@ body {
   position: relative;
 }
 
-@property --angle{
+@property --angle {
   syntax: "<angle>";
   initial-value: 0deg;
   inherits: false;
 }
 
-.card::after, .card::before{
-  content: '';
+.card::after,
+.card::before {
+  content: "";
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  background-image: conic-gradient(
+    from var(--angle),
+    #ff4545,
+    #00ff99,
+    #006aff,
+    #ff0095,
+    #ff4545
+  );
   top: 50%;
   left: 50%;
   translate: -50% -50%;
@@ -221,15 +241,15 @@ body {
   border-radius: 10px;
   animation: 3s spin linear infinite;
 }
-.card::before{
+.card::before {
   filter: blur(1.5rem);
   opacity: 0.5;
 }
-@keyframes spin{
-  from{
+@keyframes spin {
+  from {
     --angle: 0deg;
   }
-  to{
+  to {
     --angle: 360deg;
   }
 }
@@ -270,8 +290,9 @@ body {
   opacity: 1;
   transform: none;
   border-radius: 16px;
-  padding: 15px;
   cursor: pointer;
+
+  @apply px-7 py-3
 }
 
 .domains_div {
@@ -279,4 +300,71 @@ body {
   width: 100%;
   padding: 1px 1px 0;
 }
-/* Define the background grid effect */
+
+.send {
+  color: var(--send-color);
+  background: var(--send-bg);
+  align-self: flex-end;
+}
+
+.send:before {
+  right: -7px;
+  width: 20px;
+  background-color: var(--send-bg);
+  border-bottom-left-radius: 16px 14px;
+  content: ''; /* Required for pseudo-elements */
+  position: absolute; /* Adjust based on layout */
+}
+
+.send:after {
+  right: -26px;
+  width: 26px;
+  background-color: var(--ds-background-100);
+  border-bottom-left-radius: 10px;
+  content: ''; /* Required for pseudo-elements */
+  position: absolute; /* Adjust based on layout */
+}
+
+.receive {
+  background: var(--receive-bg);
+  color: var(--receive-color);
+  align-self: flex-start;
+}
+
+.receive:before {
+  left: -7px;
+  width: 20px;
+  background-color: var(--receive-bg);
+  border-bottom-right-radius: 16px 14px;
+  content: ''; /* Required for pseudo-elements */
+  position: absolute; /* Adjust based on layout */
+}
+
+.receive:after {
+  left: -26px;
+  width: 26px;
+  background-color: var(--ds-background-100);
+  border-bottom-right-radius: 10px;
+  content: ''; /* Required for pseudo-elements */
+  position: absolute; /* Adjust based on layout */
+}
+
+.chat-bubble p {
+  max-width: 255px;
+  word-wrap: break-word;
+  margin-bottom: 12px;
+  line-height: 24px;
+  position: relative;
+  padding: 10px 20px;
+  border-radius: 25px;
+
+  @apply text-sm
+}
+
+.chat-bubble p:before,
+.chat-bubble p:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 25px;
+}
