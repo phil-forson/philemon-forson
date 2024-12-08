@@ -16,7 +16,7 @@ const DomainCard = ({ company, chat }: { company: any; chat: any }) => {
         </div>
         <div className="bg-[var(--ds-gray-100-value)] px-3 py-2 rounded-lg flex items-center justify-center gap-2 text-[hsl(var(--muted-foreground))]">
           <FaLock size={10} />
-          <h2 className="text-[10px] md:text-sm font-[family-name:var(--font-geist-mono)]">
+          <h2 className="text-xs md:text-sm font-[family-name:var(--font-geist-mono)]">
             {company}
           </h2>
         </div>

@@ -12,27 +12,35 @@ const experiences = [
     chat: [
       {
         type: "right",
+        text: "When did your journey with Foresight Consult begin?",
+      },
+      {
+        type: "left",
+        text: "I started working there in 2021.",
+      },
+      {
+        type: "right",
         text: "What role did you take up there?",
       },
       {
         type: "left",
-        text: "Software Developer And Data Engineer Intern",
+        text: "I was a Software Developer and Data Engineer Intern.",
       },
       {
         type: "right",
-        text: "What tools or technologies did you use?",
+        text: "What was your key contribution there?",
       },
       {
         type: "left",
-        text: "I worked with Python, SQL, and Excel for data analysis, along with basic web development tools like HTML and JavaScript.",
+        text: "I contributed to building data pipelines and automating financial data analysis.",
       },
       {
         type: "right",
-        text: "What challenges did you face as an intern?",
+        text: "What’s something you learned or want to explore further?",
       },
       {
         type: "left",
-        text: "Learning advanced data engineering concepts and integrating tools efficiently within tight deadlines was challenging.",
+        text: "I discovered my interest in scaling data systems and aim to deepen my knowledge of distributed databases.",
       },
     ],
   },
@@ -44,35 +52,27 @@ const experiences = [
     chat: [
       {
         type: "right",
+        text: "How long were you with Ghana Education Service?",
+      },
+      {
+        type: "left",
+        text: "I was there for the year 2022.",
+      },
+      {
+        type: "right",
         text: "What was your primary focus there?",
       },
       {
         type: "left",
-        text: "I focused on analyzing and processing educational data sets to improve decision-making.",
+        text: "My focus was on analyzing and processing educational data sets to improve decision-making.",
       },
       {
         type: "right",
-        text: "What was a major project you led?",
+        text: "What’s an area you want to grow in?",
       },
       {
         type: "left",
-        text: "I led a teacher data collection project, where I created and implemented a database for enhanced data accessibility.",
-      },
-      {
-        type: "right",
-        text: "What skills did you improve on?",
-      },
-      {
-        type: "left",
-        text: "I improved my database management skills, learned how to clean and process large datasets, and gained exposure to cloud storage solutions.",
-      },
-      {
-        type: "right",
-        text: "What do you think could have gone better?",
-      },
-      {
-        type: "left",
-        text: "I could have worked on more advanced automation pipelines to streamline the data collection process.",
+        text: "I want to explore more advanced automation pipelines to streamline data collection processes further.",
       },
     ],
   },
@@ -84,6 +84,14 @@ const experiences = [
     chat: [
       {
         type: "right",
+        text: "Can you tell me about your time at Grundfos Pumps Ghana Limited?",
+      },
+      {
+        type: "left",
+        text: "I worked there from August 2022 to April 2023.",
+      },
+      {
+        type: "right",
         text: "What projects did you work on?",
       },
       {
@@ -92,27 +100,51 @@ const experiences = [
       },
       {
         type: "right",
-        text: "What were your main responsibilities?",
+        text: "What new skills did you gain or want to develop?",
       },
       {
         type: "left",
-        text: "I analyzed operational data to identify bottlenecks and created actionable dashboards for management.",
+        text: "I gained a solid understanding of operational analytics and aim to advance my skills in predictive analytics.",
+      },
+    ],
+  },
+  {
+    id: 4,
+    company: "Logiciel Ghana Limited",
+    role: "Frontend Developer",
+    year: "2023",
+    chat: [
+      {
+        type: "right",
+        text: "Are you currently working at Logiciel Ghana Limited? When did you start?",
+      },
+      {
+        type: "left",
+        text: "Yes, I started there in November 2023 and am currently employed.",
       },
       {
         type: "right",
-        text: "Which tools or frameworks did you use for data analysis?",
+        text: "What role are you currently handling?",
       },
       {
         type: "left",
-        text: "I primarily used Python for data manipulation, Tableau for visualization, and Excel for reporting.",
+        text: "I’m a Frontend Developer, creating engaging and responsive user interfaces.",
       },
       {
         type: "right",
-        text: "Where do you feel you needed to improve?",
+        text: "What projects have you worked on so far?",
       },
       {
         type: "left",
-        text: "I wanted to get more hands-on experience with machine learning to provide predictive analytics for better decision-making.",
+        text: "I’ve built and optimized user-friendly web applications, collaborating closely with backend teams for seamless integration.",
+      },
+      {
+        type: "right",
+        text: "What’s something you’re aiming to achieve in your role?",
+      },
+      {
+        type: "left",
+        text: "I aim to master modern frontend frameworks like React and enhance my knowledge of accessibility standards to build more inclusive designs.",
       },
     ],
   },
@@ -126,17 +158,17 @@ const Works = () => {
         Professional Experience <AiOutlineProject size={24} />
       </h1>
 
-      <div className="flex flex-col px-64 py-10">
+      <div className="flex flex-col space-y-8 md:space-y-0 px-4 md:px-64 py-10">
         {experiences.map((exp, index) => (
           <React.Fragment key={exp.id}>
             {/* DomainCard */}
-            <div className={`flex ${index % 2 === 0 ? "self-start" : "self-end"}`}>
+            <div className={`flex ${index % 2 === 0 ? " md:self-start" : "md:self-end"}`}>
               <DomainCard company={exp.company} chat={exp.chat} />
             </div>
 
             {/* Line */}
             {index < experiences.length - 1 && (
-              <div className={`w-full flex justify-center pb-3  ${index % 2 === 0 ? "-rotate-180" : "  -scale-x-100 rotate-180"} `}>
+              <div className={`w-full hidden md:flex justify-center pb-3  ${index % 2 === 0 ? "-rotate-180" : "  -scale-x-100 rotate-180"} `}>
                 <Line />
               </div>
             )}
