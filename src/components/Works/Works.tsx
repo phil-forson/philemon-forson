@@ -155,7 +155,7 @@ const Works = () => {
   return (
     <div className="h-auto md:px-36 md:py-16 w-full px-4">
       <h1 className="md:text-4xl text-2xl font-semibold text-center flex items-center gap-2 justify-center">
-        Professional Experience <AiOutlineProject size={24} />
+        Professional Experience
       </h1>
 
       <div className="flex flex-col space-y-8 md:space-y-0 px-4 md:px-64 py-10">

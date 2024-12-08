@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="h-auto md:px-36 md:py-16 px-4 py-8 border-t border-[var(--)] w-full">
+    <div className="h-auto md:px-36 md:py-16 px-4 py-8 border-t border-[var(--ds-gray-200-value)] w-full">
       <div className="flex justify-center">
         <div className="flex flex-col">
           <p className="text-sm">Philemon Forson</p>
