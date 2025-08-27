@@ -1,14 +1,19 @@
 import React from "react";
-
+import ParticlesBackground from "../ParticlesBackground";
 
 const Landing = () => {
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Particles Background */}
+      <div className="absolute inset-0 z-[1000]">
+        {/* <ParticlesBackground /> */}
+      </div>
+
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-white dark:bg-black transition-colors duration-300"></div>
+      <div className="absolute inset-0 bg-white dark:bg-black transition-colors duration-300 opacity-40"></div>
 
       {/* Wireframe Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.15] dark:opacity-[0.1] transition-opacity duration-300">
+      <div className="absolute inset-0 opacity-[0.15] dark:opacity-[0.1] transition-opacity duration-300 z-20">
         <div
           className="absolute inset-0"
           style={{
@@ -26,7 +31,17 @@ const Landing = () => {
       </div>
 
       {/* 3D Wireframe Globe */}
-      <div className="absolute inset-0 flex items-center justify-center translate-y-16">
+      <div className="absolute inset-0 flex items-center justify-center translate-y-16 z-30">
+        {/* Name and Title Above Globe */}
+        <div className="absolute top-[40px] left-1/2 transform -translate-x-1/2 z-40 text-center text-[var(--ds-gray-900)] tracking-[-0.98px] w-auto">
+          <strong className="text-3xl sm:text-4xl md:text-5xl text-[var(--receive-text)] mb-2 ">
+            Philemon Forson
+          </strong>
+          <p className="text-[25px] sm:text-xl font-semibold  ">
+            Full-Stack Developer & Data Engineer
+          </p>
+        </div>
+
         <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] 2xl:w-[800px] 2xl:h-[800px]">
           <svg
             aria-hidden="true"
@@ -358,7 +373,7 @@ const Landing = () => {
 
             {/* Network Nodes */}
             <g data-testid="globe-nodes">
-              {/* Node 1 - Top Right - Code/Development */}
+              {/* Node 1 - Bottom Right - React */}
               <g data-testid="deploy-node-3-5-ddd">
                 <g opacity="1">
                   <g id="ddd35" opacity="1">
@@ -435,7 +450,7 @@ const Landing = () => {
                 </g>
               </g>
 
-              {/* Node 2 - Bottom Left - Database */}
+              {/* Node 2 - Bottom Left - Docker */}
               <g data-testid="deploy-node--3-5-dddd">
                 <g opacity="1">
                   <g id="dddd-35" opacity="1">
@@ -510,7 +525,7 @@ const Landing = () => {
                 </g>
               </g>
 
-              {/* Node 3 - Top Center Right - Data Analysis */}
+              {/* Node 3 - Top Center Right - Python */}
               <g data-testid="deploy-node-1-5-dd">
                 <g opacity="1">
                   <g id="dd15" opacity="1">
@@ -589,7 +604,7 @@ const Landing = () => {
                 </g>
               </g>
 
-              {/* Node 4 - Top Center Left - Machine Learning */}
+              {/* Node 4 - Top Center Left - Machine Learning/AI */}
               <g data-testid="deploy-node--1-5-dl">
                 <g opacity="1">
                   <g id="dl-15" opacity="1">
@@ -672,7 +687,7 @@ const Landing = () => {
                 </g>
               </g>
 
-              {/* Node 5 - Center Left - Full Stack */}
+              {/* Node 5 - Center Left - Databases */}
               <g data-testid="deploy-node-0-5-dddl">
                 <g opacity="1">
                   <g id="dddl05" opacity="1">
@@ -732,9 +747,7 @@ const Landing = () => {
                     fill="var(--ds-stop-color)"
                     r="8"
                   ></circle>
-                  <g
-                    transform="translate(276.17974664711625, 228) scale(1.4)"
-                  >
+                  <g transform="translate(276.17974664711625, 228) scale(1.4)">
                     <path
                       fill="#ffca28"
                       fillRule="evenodd"
@@ -742,12 +755,6 @@ const Landing = () => {
                       clipRule="evenodd"
                     />
                   </g>
-                  {/* Laptop Icon */}
-                  {/* <foreignObject x="-12" y="-12" width="24" height="24">
-                    <div className="flex items-center justify-center w-full h-full">
-                      <FaDocker className="w-4 h-4 text-cyan-400" />
-                    </div>
-                  </foreignObject> */}
                 </g>
               </g>
             </g>
@@ -756,7 +763,7 @@ const Landing = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 lg:px-8 text-center">
+      <div className="relative z-50 max-w-6xl mx-auto px-4 lg:px-8 text-center">
         {/* Hero Text Above Globe */}
         {/* <div className="mb-8 space-y-6">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 dark:from-white dark:via-gray-300 dark:to-white bg-clip-text text-transparent">

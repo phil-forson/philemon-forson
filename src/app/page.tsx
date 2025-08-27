@@ -11,7 +11,7 @@ export default function Home() {
       <Nav />
       <Landing />
       <Projects />
-      <Works />
+      {/* <Works /> */}
       <Contact />
       <Footer />
     </div>

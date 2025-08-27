@@ -18,7 +18,7 @@
     --accents-7: #333;
     --accents-8: #111;
     --muted: hsl(240 4.8% 95.9%);
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted-foreground: 220 8.9% 46.1%;
     --cross-row: 1;
     --cross-column: 1;
     --grid-cols-num: 7;
@@ -27,6 +27,7 @@
     --grid-rows-value: repeat(var(--grid-rows-num), minmax(0, 1fr));
     --ds-gray-100-value: hsla(0, 0%, 95%, 1);
     --ds-gray-200-value: hsla(0, 0%, 92%, 1);
+    --ds-gray-900: hsla(0, 0%, 40%, 1);
     --ds-stop-color: hsla(0,0%,92%,1);
     --ds-stop-bg: rgba(255,255,255,0.9);
     --guide-width: 1px;
@@ -45,7 +46,7 @@
     --window-card-diff: 48px;
     --send-bg: #0B93F6;
     --send-color: white;
-    --receive-color: hsl(var(--muted-foreground));
+    --receive-color: hsl(220 8.9% 46.1%);
     --receive-bg: var(--ds-gray-100-value);
     --receive-text: black;
   }
@@ -65,7 +66,7 @@
     --accents-2: #333;
     --accents-1: #111;
     --muted: hsl(240 3.7% 15.9%);
-    --muted-foreground: 240 5% 64.9%;
+    --muted-foreground: 220 9% 75%;
     --ds-stop-color: hsla(0, 0%, 100%, 0.145);
     --ds-stop-bg: rgba(0,0,0,0.9);
     --ds-gray-200-value: 0, 0%, 12%;
@@ -80,11 +81,14 @@
     --ds-gray-alpha-200: hsla(0, 0%, 100%, 0.09);
     --ds-gray-alpha-300: hsla(0, 0%, 100%, 0.13);
     --ds-gray-alpha-400: hsla(0, 0%, 100%, 0.14);
+    --ds-gray-900: hsla(0, 0%, 63%, 1);
+
     --classic-card-border: from 180deg at 50% 50%, #ffcade40 0deg,
       #e9d3ff40 88.12deg, #c8ddff40 176.25deg, #e9d3ff40 264.38deg,
       #ffcade40 1turn;
     --gradient-bg: 180deg, #0d0e13 0%, #161725 50%, #1c1d2e 100%;
     --receive-color: white;
+    --receive-text: white;
     --receive-bg: var(--ds-gray-100-value);
 
   }
@@ -459,6 +463,51 @@ body {
   position: absolute;
   bottom: 0;
   height: 25px;
+}
+
+/* Project Cards as Mac Windows */
+.window-card {
+  transition: all 0.3s ease;
+}
+
+.window-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Mac Window Dots Styling */
+.window-card .bg-red-500 {
+  background: #ff5f56;
+  box-shadow: 0 0 0 1px #e0443e;
+}
+
+.window-card .bg-yellow-500 {
+  background: #ffbd2e;
+  box-shadow: 0 0 0 1px #dea123;
+}
+
+.window-card .bg-green-500 {
+  background: #27ca3f;
+  box-shadow: 0 0 0 1px #1aab29;
+}
+
+.window-card .bg-red-500:hover,
+.window-card .bg-yellow-500:hover,
+.window-card .bg-green-500:hover {
+  filter: brightness(1.1);
+  transform: scale(1.1);
+  transition: all 0.2s ease;
+}
+
+/* Featured badge styling */
+.bg-gradient-to-r {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* Custom breathing animation for globe grid lines */
