@@ -27,6 +27,8 @@
     --grid-rows-value: repeat(var(--grid-rows-num), minmax(0, 1fr));
     --ds-gray-100-value: hsla(0, 0%, 95%, 1);
     --ds-gray-200-value: hsla(0, 0%, 92%, 1);
+    --ds-stop-color: hsla(0,0%,92%,1);
+    --ds-stop-bg: rgba(255,255,255,0.9);
     --guide-width: 1px;
     --ds-shadow-border: 0 0 0 1px rgba(0, 0, 0, 0.08);
     --ds-shadow-border-inset: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
@@ -64,6 +66,8 @@
     --accents-1: #111;
     --muted: hsl(240 3.7% 15.9%);
     --muted-foreground: 240 5% 64.9%;
+    --ds-stop-color: hsla(0, 0%, 100%, 0.145);
+    --ds-stop-bg: rgba(0,0,0,0.9);
     --ds-gray-200-value: 0, 0%, 12%;
     --ds-shadow-border: 0 0 0 1px hsla(0, 0%, 100%, 0.145);
     --ds-shadow-small: 0px 1px 2px rgba(0, 0, 0, 0.16);
@@ -100,6 +104,94 @@
       --grid-cols-num: 10;
       --grid-rows-num: 15;
     }
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2000ms;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4000ms;
+  }
+
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+
+  .animation-delay-1000 {
+    animation-delay: 1000ms;
+  }
+
+  .animation-delay-1500 {
+    animation-delay: 1500ms;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Blob animation */
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  /* Slow spin animation */
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
@@ -367,4 +459,28 @@ body {
   position: absolute;
   bottom: 0;
   height: 25px;
+}
+
+/* Custom breathing animation for globe grid lines */
+@keyframes pulseOpacity {
+  0% { opacity: 0.2; }
+  13.3% { opacity: 1; }
+  66.7% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+@keyframes pulseStrokeWidth {
+  0% { stroke-width: 1; }
+  13.3% { stroke-width: 3; }
+  66.7% { stroke-width: 3; }
+  100% { stroke-width: 1; }
+}
+
+/* Apply to SVG elements */
+.breathing-line {
+  animation: pulseOpacity 4.5s infinite;
+}
+
+.breathing-line-stroke {
+  animation: pulseStrokeWidth 4.5s infinite;
 }

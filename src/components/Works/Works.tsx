@@ -1,7 +1,10 @@
+"use client";
 import React from "react";
 import { AiOutlineProject } from "react-icons/ai";
 import DomainCard from "./DomainCard";
 import Line from "../../../public/Line";
+import Tabs from "../Tabs/Tabs";
+import { IFilter } from "../../../utils/types";
 
 const experiences = [
   {
@@ -150,25 +153,47 @@ const experiences = [
   },
 ];
 
-
 const Works = () => {
+  const filters: IFilter[] = [
+    {
+      id: 1,
+      name: "Highlights",
+      value: "Highlights",
+    },
+    {
+      id: 2,
+      name: "Q&A",
+      value: "Q&A",
+    },
+  ];
+  const [activeFilter, setActiveFilter] = React.useState(filters[0]);
   return (
     <div className="h-auto md:px-36 md:py-16 w-full px-4">
       <h1 className="md:text-4xl text-2xl font-semibold text-center flex items-center gap-2 justify-center">
         Professional Experience
       </h1>
 
-      <div className="flex flex-col space-y-8 md:space-y-0 px-4 md:px-64 py-10">
+      <div className=" flex-col space-y-8 md:space-y-0 px-4 md:px-64 py-10 flex">
         {experiences.map((exp, index) => (
           <React.Fragment key={exp.id}>
             {/* DomainCard */}
-            <div className={`flex ${index % 2 === 0 ? " md:self-start" : "md:self-end"}`}>
-              <DomainCard company={exp.company} chat={exp.chat} />
+            <div
+              className={`flex ${
+                index % 2 === 0 ? " md:self-start" : "md:self-end"
+              }`}
+            >
+              <div className="transform hover:scale-105 transition-transform duration-300">
+                <DomainCard company={exp.company} chat={exp.chat} />
+              </div>
             </div>
 
             {/* Line */}
             {index < experiences.length - 1 && (
-              <div className={`w-full hidden md:flex justify-center pb-3  ${index % 2 === 0 ? "-rotate-180" : "  -scale-x-100 rotate-180"} `}>
+              <div
+                className={`w-full hidden md:flex justify-center pb-3  ${
+                  index % 2 === 0 ? "-rotate-180" : "  -scale-x-100 rotate-180"
+                } `}
+              >
                 <Line />
               </div>
             )}

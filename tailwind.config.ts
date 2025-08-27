@@ -13,8 +13,11 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      animation: {
+        "spin-slow": "spin 20s linear infinite",
+      },
     },
   },
-  darkMode: 'class',
+  darkMode: "class",
   plugins: [],
 } satisfies Config;
