@@ -1,17 +1,5 @@
 import React from "react";
-import Button from "../Button/Button";
-import { MdOutlineTouchApp } from "react-icons/md";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaGlobe,
-  FaServer,
-  FaDatabase,
-  FaDocker,
-  FaBrain,
-  FaChartLine,
-  FaLaptopCode,
-} from "react-icons/fa";
+
 
 const Landing = () => {
   return (
