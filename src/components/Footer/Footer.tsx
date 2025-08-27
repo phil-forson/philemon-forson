@@ -18,7 +18,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-3">Philemon Forson</h3>
-            <p className="text-sm text-[rgb(var(--muted-foreground))] mb-4">
+            <p className="text-sm text-[var(--ds-gray-900)] mb-4">
               Software Developer & Data Engineer passionate about creating
               impactful solutions.
             </p>
@@ -32,21 +32,24 @@ const Footer = () => {
             <h4 className="text-md font-semibold mb-3">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/" className="hover:text-blue-500 transition-colors">
+                <a
+                  href="#landing"
+                  className="hover:text-blue-500 transition-colors"
+                >
                   Home
                 </a>
               </li>
               <li>
                 <a
-                  href="/about"
+                  href="#contact"
                   className="hover:text-blue-500 transition-colors"
                 >
-                  About
+                  Contact
                 </a>
               </li>
               <li>
                 <a
-                  href="/projects"
+                  href="#projects"
                   className="hover:text-blue-500 transition-colors"
                 >
                   Projects
@@ -104,7 +107,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-[var(--ds-gray-200-value)] pt-6 text-center">
-          <p className="text-sm text-[rgb(var(--muted-foreground))]">
+          <p className="text-sm text-[var(--ds-gray-900)]">
             © {currentYear} Philemon Forson. Made with{" "}
             <FaHeart className="inline text-red-500 mx-1" /> using Next.js &
             Tailwind CSS

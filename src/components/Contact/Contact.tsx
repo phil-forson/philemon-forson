@@ -12,7 +12,7 @@ import { MdOutlineEmail } from "react-icons/md";
 const Contact = () => {
   const contactMethods = [
     {
-      icon: <FaEnvelope className="text-2xl text-blue-500" />,
+      icon: <FaEnvelope className="text-2xl text-green-500" />,
       title: "Email",
       value: "forsonphilemon1@gmail.com",
       link: "mailto:forsonphilemon1@gmail.com",
@@ -20,25 +20,25 @@ const Contact = () => {
         "Send me an email for any inquiries or collaboration opportunities.",
     },
     {
-      icon: <FaGithub className="text-2xl text-gray-800 dark:text-gray-200" />,
+      icon: <FaGithub className="text-2xl text-red-500" />,
       title: "GitHub",
-      value: "github.com/username",
-      link: "https://github.com/username",
+      value: "github.com/phil-forson",
+      link: "https://github.com/phil-forson",
       description: "Check out my open-source projects and contributions.",
     },
     {
-      icon: <FaLinkedin className="text-2xl text-blue-600" />,
+      icon: <FaLinkedin className="text-2xl text-blue-500" />,
       title: "LinkedIn",
-      value: "linkedin.com/in/username",
-      link: "https://linkedin.com/in/username",
+      value: "linkedin.com/in/philemon-forson",
+      link: "https://linkedin.com/in/philemon-forson",
       description: "Connect with me professionally and view my experience.",
     },
     {
-      icon: <FaMapMarkerAlt className="text-2xl text-red-500" />,
+      icon: <FaMapMarkerAlt className="text-2xl text-yellow-500" />,
       title: "Location",
-      value: "Accra, Ghana",
+      value: "Dallas, Texas",
       link: null,
-      description: "Based in the vibrant tech hub of Accra, Ghana.",
+      description: "Based in the vibrant tech hub of Dallas, Texas.",
     },
   ];
 
@@ -46,11 +46,11 @@ const Contact = () => {
     <section className="w-full h-auto lg:px-36 px-4 py-8 lg:py-16 bg-gradient-to-br from-[rgba(var(--color-background))] to-[rgba(var(--ds-gray-100-value))]">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 tracking-[-0.98px]">
           <h2 className="text-3xl lg:text-4xl font-semibold mb-4">
             Get In Touch
           </h2>
-          <p className="text-lg text-[rgb(var(--muted-foreground))] max-w-2xl mx-auto">
+          <p className="text-lg text-[var(--ds-gray-900)] max-w-2xl mx-auto">
             I'm always open to discussing new opportunities, interesting
             projects, or just having a chat about technology.
           </p>
@@ -74,16 +74,24 @@ const Contact = () => {
                       rel={
                         method.title === "Email" ? "" : "noopener noreferrer"
                       }
-                      className="text-blue-500 hover:text-blue-600 transition-colors font-medium"
+                      className={`transition-colors font-medium ${
+                        method.title === "Email"
+                          ? "text-green-500 hover:text-green-600"
+                          : method.title === "GitHub"
+                          ? "text-red-500 hover:text-red-600"
+                          : method.title === "LinkedIn"
+                          ? "text-blue-500 hover:text-blue-600"
+                          : "text-blue-500 hover:text-blue-600"
+                      }`}
                     >
                       {method.value}
                     </a>
                   ) : (
-                    <p className="text-[rgb(var(--color-foreground))] font-medium">
+                    <p className="text-yellow-500 font-medium">
                       {method.value}
                     </p>
                   )}
-                  <p className="text-sm text-[rgb(var(--muted-foreground))] mt-2">
+                  <p className="text-sm text-[var(--ds-gray-900)] mt-2">
                     {method.description}
                   </p>
                 </div>
@@ -122,8 +130,8 @@ const Contact = () => {
 
         {/* Additional Info */}
         <div className="text-center mt-12">
-          <p className="text-[rgb(var(--muted-foreground))]">
-            I typically respond to emails within 24 hours. For urgent matters,
+          <p className="text-[var(--ds-gray-900)]">
+            I typically respond to emails within 2 hours. For urgent matters,
             feel free to reach out on LinkedIn.
           </p>
         </div>
@@ -133,4 +141,3 @@ const Contact = () => {
 };
 
 export default Contact;
-

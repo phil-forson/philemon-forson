@@ -3,7 +3,7 @@ import ParticlesBackground from "../ParticlesBackground";
 
 const Landing = () => {
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative w-full md:h-[70vh] sm:h-[50vh] flex items-center justify-center overflow-hidden">
       {/* Particles Background */}
       <div className="absolute inset-0 z-[1000]">
         {/* <ParticlesBackground /> */}
@@ -11,6 +11,156 @@ const Landing = () => {
 
       {/* Background Elements */}
       <div className="absolute inset-0 bg-white dark:bg-black transition-colors duration-300 opacity-40"></div>
+
+      {/* Floating Skill Bubbles */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        {/* React */}
+        <div className="floating-skill-bubble absolute top-16 left-8 animate-float-left">
+          <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group flex items-center gap-2">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.95c-2.497.378-4.71 1.64-6.092 3.538a8.54 8.54 0 0 0-1.09 2.073 8.48 8.48 0 0 0-.577 2.22c-.096.69-.096 1.42 0 2.11.096.69.296 1.37.577 2.22.296.85.694 1.62 1.09 2.073 1.382 1.898 3.595 3.16 6.092 3.538 2.497.378 4.71-1.64 6.092-3.538.396-.453.794-1.223 1.09-2.073.281-.85.481-1.53.577-2.22.096-.69.096-1.42 0-2.11-.096-.69-.296-1.37-.577-2.22-.296-.85-.694-1.62-1.09-2.073-1.382-1.898-3.595-3.16-6.092-3.538z" />
+            </svg>
+            React
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
+              4+ years experience
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Node.js */}
+        <div className="floating-skill-bubble absolute top-16 right-8 animate-float-right">
+          <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group flex items-center gap-2">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242L12.975,1.628c-0.081-0.047-0.189-0.047-0.271,0L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021c0,1.755-1.006,2.745-2.756,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57,0.329,0.924,0.944,0.924,1.603v10.15c0,0.659-0.354,1.275-0.924,1.604L12.922,23.754C12.642,23.916,12.324,24,11.998,24zM19.099,13.993c0,1.9-1.284,2.406-1.284,3.116c0,0.4,0.319,0.604,0.638,0.604c0.557,0,1.022-0.416,1.022-1.836V13.993zM16.89,15.836c0-0.925,0.732-1.247,0.732-1.836c0-0.338-0.271-0.604-0.638-0.604c-0.557,0-1.021,0.416-1.021,1.836V15.836z" />
+            </svg>
+            Node.js
+            <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
+              3+ years experience
+              <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Python */}
+        <div className="floating-skill-bubble absolute bottom-16 left-8 animate-float-left">
+          <div className="bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group flex items-center gap-2">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm0 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm0 3c-3.866 0-7 3.134-7 7s3.134 7 7 7 7-3.134 7-7-3.134-7-7-7zm0 2c2.761 0 5 2.239 5 5s-2.239 5-5 5-5-2.239-5-5 2.239-5 5-5z" />
+            </svg>
+            Python
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
+              5+ years experience
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* TypeScript */}
+        <div className="floating-skill-bubble absolute bottom-16 right-8 animate-float-right">
+          <div className="bg-gradient-to-r from-blue-700 to-indigo-700 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group flex items-center gap-2">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.107.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.636-.852-2.156-1.405-.52-.553-.93-1.222-1.23-2.005-.3-.783-.45-1.658-.45-2.625 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z" />
+            </svg>
+            TypeScript
+            <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
+              3+ years experience
+              <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* MongoDB */}
+        <div className="floating-skill-bubble absolute top-1/4 left-1/4 animate-float-left">
+          <div className="bg-gradient-to-r from-green-700 to-teal-700 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group flex items-center gap-2">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.187 19.181L15.5 13.5h-7l-1.687 5.681A1.988 1.988 0 0 0 7.5 21h9c.946 0 1.715-.764 1.715-1.709 0-.045-.004-.09-.01-.135L17.187 19.181zM12 2C8.5 2 5.5 4.5 5.5 8.5c0 2.5 1.5 4.5 3 6.5h7c1.5-2 3-4 3-6.5C18 4.5 15 2 12 2z" />
+            </svg>
+            MongoDB
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
+              3+ years experience
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Next.js */}
+        <div className="floating-skill-bubble absolute bottom-48 right-16 animate-float-right">
+          <div className="bg-gradient-to-r from-gray-800 to-black text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group">
+            Next.js
+            <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
+              2+ years experience
+              <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Data Engineering */}
+        <div className="floating-skill-bubble absolute top-1/3 right-16 animate-float-right">
+          <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group">
+            Data Engineering
+            <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
+              4+ years experience
+              <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Machine Learning */}
+        <div className="floating-skill-bubble absolute bottom-1/3 left-16 animate-float-left">
+          <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group">
+            ML/AI
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
+              3+ years experience
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Docker */}
+        <div className="floating-skill-bubble absolute top-16 left-1/3 animate-float-left">
+          <div className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group">
+            Docker
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
+              3+ years experience
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* PostgreSQL */}
+        <div className="floating-skill-bubble absolute bottom-16 right-1/3 animate-float-right">
+          <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group">
+            PostgreSQL
+            <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
+              3+ years experience
+              <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* AWS */}
+        <div className="floating-skill-bubble absolute top-1/4 left-8 animate-float-left">
+          <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group">
+            AWS
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
+              2+ years experience
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Redis */}
+        <div className="floating-skill-bubble absolute bottom-1/4 right-8 animate-float-right">
+          <div className="bg-gradient-to-r from-red-600 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group">
+            Redis
+            <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
+              2+ years experience
+              <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Wireframe Grid Pattern */}
       <div className="absolute inset-0 opacity-[0.15] dark:opacity-[0.1] transition-opacity duration-300 z-20">
@@ -33,7 +183,7 @@ const Landing = () => {
       {/* 3D Wireframe Globe */}
       <div className="absolute inset-0 flex items-center justify-center translate-y-16 z-30">
         {/* Name and Title Above Globe */}
-        <div className="absolute top-[40px] left-1/2 transform -translate-x-1/2 z-40 text-center text-[var(--ds-gray-900)] tracking-[-0.98px] w-auto">
+        <div className="absolute top-[calc(50% - 900px)] left-1/2 transform -translate-x-1/2 z-40 text-center text-[var(--ds-gray-900)] tracking-[-0.98px] w-auto">
           <strong className="text-3xl sm:text-4xl md:text-5xl text-[var(--receive-text)] mb-2 ">
             Philemon Forson
           </strong>
@@ -42,7 +192,7 @@ const Landing = () => {
           </p>
         </div>
 
-        <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] 2xl:w-[800px] 2xl:h-[800px]">
+        <div className="relative w-[300px] h-[300px] sm:w-[600px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] 2xl:w-[800px] 2xl:h-[800px]">
           <svg
             aria-hidden="true"
             height="100%"

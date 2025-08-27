@@ -9,10 +9,16 @@ export default function Home() {
   return (
     <div className="font-[family-name:var(--font-geist-sans)]">
       <Nav />
-      <Landing />
-      <Projects />
+      <section id="landing">
+        <Landing />
+      </section>
+      <section id="projects">
+        <Projects />
+      </section>
       {/* <Works /> */}
-      <Contact />
+      <section id="contact">
+        <Contact />
+      </section>
       <Footer />
     </div>
   );

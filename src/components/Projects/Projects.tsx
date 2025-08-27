@@ -136,7 +136,7 @@ const Projects = () => {
         <h2 className="text-3xl lg:text-4xl font-semibold mb-4">
           Featured Projects
         </h2>
-        <p className="text-lg text-[rgb(var(--muted))] max-w-2xl mx-auto">
+        <p className="text-lg text-[var(--ds-gray-900)] max-w-2xl mx-auto">
           Here are some of the projects I've worked on. Each one represents a
           unique challenge and learning opportunity.
         </p>
@@ -187,7 +187,7 @@ const Projects = () => {
                   <h3 className="text-xl font-semibold leading-tight text-[rgb(var(--color-foreground))]">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-[var(--ds-gray-900)] uppercase tracking-wide">
+                  <p className="text-sm text-[var(--ds-gray-900)] uppercase">
                     {project.category}
                   </p>
                 </div>
@@ -240,79 +240,7 @@ const Projects = () => {
         ))}
       </div>
 
-      {/* Call to Action */}
-      <div className="mt-16">
-        <div className="window-card max-w-4xl mx-auto">
-          {/* Mac Window Header with Three Dots */}
-          <div className="flex justify-between items-center w-full mb-6">
-            <div className="flex items-center space-x-2">
-              <div className="flex space-x-1">
-                <span className="w-3 h-3 rounded-full bg-red-500"></span>
-                <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
-                <span className="w-3 h-3 rounded-full bg-green-500"></span>
-              </div>
-            </div>
-            <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg">
-              💼 Let's Connect
-            </div>
-            <div></div>
-          </div>
-
-          {/* CTA Content */}
-          <div className="bg-[var(--ds-background-100)] text-center p-8">
-            <div className="mb-8">
-              <h3 className="text-3xl font-bold mb-4 text-[rgb(var(--color-foreground))] tracking-[-0.98px]">
-                Have a Project in Mind?
-              </h3>
-              <p className="text-lg text-[rgb(var(--muted-foreground))] max-w-2xl mx-auto leading-relaxed">
-                I'm always interested in new opportunities and exciting
-                projects. Let's bring your ideas to life together.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="mailto:forsonphilemon1@gmail.com"
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                Let's Discuss
-              </a>
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-[var(--ds-gray-100-value)] text-[rgb(var(--color-foreground))] px-8 py-4 rounded-lg font-semibold hover:bg-[var(--ds-gray-200-value)] transition-all duration-300 border border-[var(--ds-gray-200-value)] hover:shadow-md"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                Learn More
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+     
     </section>
   );
 };

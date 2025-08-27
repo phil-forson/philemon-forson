@@ -1,8 +1,16 @@
+"use client";
+
 import React from "react";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
-import Link from "next/link";
 
 const Nav = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="header_main px-4 sticky top-0 flex justify-between items-center">
       <div className=" gap-2 items-center hidden md:flex">
@@ -12,24 +20,30 @@ const Nav = () => {
         </p>
       </div>
       <div className="flex space-x-5 justify-around md:justify-start items-center text-sm w-full md:w-auto">
-        <Link href="/" className="hover:text-blue-500 transition-colors">
+        <button
+          onClick={() => scrollToSection("landing")}
+          className="hover:text-blue-500 transition-colors cursor-pointer"
+        >
           Home
-        </Link>
-        <Link href="/about" className="hover:text-blue-500 transition-colors">
-          About
-        </Link>
-        <Link
-          href="/projects"
-          className="hover:text-blue-500 transition-colors"
+        </button>
+        <button
+          onClick={() => scrollToSection("contact")}
+          className="hover:text-blue-500 transition-colors cursor-pointer"
+        >
+          Contact
+        </button>
+        <button
+          onClick={() => scrollToSection("projects")}
+          className="hover:text-blue-500 transition-colors cursor-pointer"
         >
           Projects
-        </Link>
-        <Link
+        </button>
+        <a
           href="/guestbook"
-          className="hover:text-blue-500 transition-colors"
+          className="hover:text-blue-500 transition-colors cursor-pointer"
         >
           Guestbook
-        </Link>
+        </a>
         <ThemeSwitch />
       </div>
     </header>

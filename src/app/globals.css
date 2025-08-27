@@ -518,6 +518,86 @@ body {
   100% { opacity: 0.2; }
 }
 
+/* Floating Skill Bubbles Animation */
+@keyframes float-left {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-20px, -10px) rotate(-2deg);
+  }
+  50% {
+    transform: translate(-35px, -20px) rotate(-4deg);
+  }
+  75% {
+    transform: translate(-20px, -10px) rotate(-2deg);
+  }
+}
+
+@keyframes float-right {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(20px, -10px) rotate(2deg);
+  }
+  50% {
+    transform: translate(35px, -20px) rotate(4deg);
+  }
+  75% {
+    transform: translate(20px, -10px) rotate(2deg);
+  }
+}
+
+/* Individual floating animations with different delays and durations */
+.animate-float-left {
+  animation: float-left 6s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.animate-float-right {
+  animation: float-right 6s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+/* Staggered delays for variety */
+.floating-skill-bubble:nth-child(odd) {
+  animation-delay: 0s;
+}
+
+.floating-skill-bubble:nth-child(even) {
+  animation-delay: 2s;
+}
+
+.floating-skill-bubble:nth-child(3n) {
+  animation-delay: 4s;
+}
+
+.floating-skill-bubble:nth-child(4n) {
+  animation-delay: 1s;
+}
+
+.floating-skill-bubble:nth-child(5n) {
+  animation-delay: 3s;
+}
+
+/* Hover effects for skill bubbles */
+.floating-skill-bubble:hover {
+  animation-play-state: paused;
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Tooltip positioning and styling */
+.floating-skill-bubble .group:hover .opacity-0 {
+  opacity: 1;
+}
+
+/* Ensure tooltips are visible on hover */
+.floating-skill-bubble:hover .pointer-events-none {
+  pointer-events: auto;
+}
+
 @keyframes pulseStrokeWidth {
   0% { stroke-width: 1; }
   13.3% { stroke-width: 3; }
