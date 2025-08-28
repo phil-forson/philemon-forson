@@ -99,7 +99,7 @@ const Guestbook = () => {
             <FaComments className="text-white text-3xl" />
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold mb-4">Guestbook</h1>
-          <p className="text-lg text-[rgb(var(--muted-foreground))] max-w-2xl mx-auto">
+          <p className="text-lg text-[var(--ds-gray-900)] max-w-2xl mx-auto">
             Leave a message, share your thoughts, or just say hello! I'd love to
             hear from you.
           </p>
@@ -195,7 +195,7 @@ const Guestbook = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold">{entry.name}</h3>
-                      <div className="flex items-center gap-2 text-sm text-[rgb(var(--muted-foreground))]">
+                      <div className="flex items-center gap-2 text-sm text-[var(--ds-gray-900)]">
                         <FaCalendar className="text-xs" />
                         {formatDate(entry.date)}
                       </div>
@@ -204,7 +204,7 @@ const Guestbook = () => {
 
                   <button
                     onClick={() => handleLike(entry.id)}
-                    className="flex items-center gap-2 text-sm text-[rgb(var(--muted-foreground))] hover:text-red-500 transition-colors"
+                    className="flex items-center gap-2 text-sm text-[var(--ds-gray-900)] hover:text-red-500 transition-colors"
                   >
                     <FaHeart
                       className={entry.likes > 0 ? "text-red-500" : ""}
