@@ -191,7 +191,7 @@ const Landing = () => {
           </p>
         </div>
 
-        <div className="relative w-[300px] h-[300px] sm:w-[600px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] 2xl:w-[800px] 2xl:h-[800px]">
+        <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] 2xl:w-[800px] 2xl:h-[800px]">
           <svg
             aria-hidden="true"
             height="100%"
