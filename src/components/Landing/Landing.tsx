@@ -135,7 +135,7 @@ const Landing = () => {
 
         {/* AWS */}
         <div className="floating-skill-bubble absolute top-1/4 left-8 animate-float-left">
-          <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group">
+          <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-full text-xs md:text-sm font-medium shadow-lg relative group">
             AWS
             <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
               2+ years experience
@@ -146,7 +146,7 @@ const Landing = () => {
 
         {/* Redis */}
         <div className="floating-skill-bubble absolute bottom-1/4 right-8 animate-float-right">
-          <div className="bg-gradient-to-r from-red-600 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group">
+          <div className="bg-gradient-to-r from-red-600 to-orange-500 text-white px-4 py-2 rounded-full text-xs md:text-sm font-medium shadow-lg relative group">
             Redis
             <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
               2+ years experience
@@ -183,10 +183,10 @@ const Landing = () => {
           }}
           className="absolute left-1/2 transform -translate-x-1/2 z-40 text-center text-[var(--ds-gray-900)] tracking-[-0.98px] w-auto"
         >
-          <strong className="text- sm:text-3xl md:text-5xl text-[var(--receive-text)] mb-2 ">
+          <strong className="text-xl sm:text-3xl md:text-5xl text-[var(--receive-text)] mb-2 ">
             Philemon Forson
           </strong>
-          <p className="text-[25px] sm:text-xl font-semibold  ">
+          <p className="text-lg md:text-[25px] sm:text-xl font-semibold  ">
             Full-Stack Developer & Data Engineer
           </p>
         </div>
