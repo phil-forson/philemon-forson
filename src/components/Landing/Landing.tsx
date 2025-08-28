@@ -183,10 +183,10 @@ const Landing = () => {
           }}
           className="absolute left-1/2 transform -translate-x-1/2 z-40 text-center text-[var(--ds-gray-900)] tracking-[-0.98px] w-auto"
         >
-          <strong className="text-xl sm:text-3xl md:text-5xl text-[var(--receive-text)] mb-2 ">
+          <strong className="text-2xl sm:text-3xl md:text-5xl text-[var(--receive-text)] mb-2 ">
             Philemon Forson
           </strong>
-          <p className="text-lg md:text-[25px] sm:text-xl font-semibold  ">
+          <p className="text-xl md:text-[25px] sm:text-xl font-semibold  ">
             Full-Stack Developer & Data Engineer
           </p>
         </div>

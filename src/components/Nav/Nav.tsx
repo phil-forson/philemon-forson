@@ -1,10 +1,20 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 
 const Nav = () => {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
   const scrollToSection = (sectionId: string) => {
+    if (!isHomePage) {
+      // If not on home page, navigate to home page first
+      window.location.href = "/";
+      return;
+    }
+
     const element = document.getElementById(sectionId);
     if (element) {
       const navHeight = 64; // Height of the navigation bar
@@ -14,6 +24,16 @@ const Nav = () => {
         top: elementPosition,
         behavior: "smooth",
       });
+    }
+  };
+
+  const handleContactClick = () => {
+    if (isHomePage) {
+      // If on home page, scroll to contact section
+      scrollToSection("contact");
+    } else {
+      // If on guestbook page, navigate to home page and scroll to contact
+      window.location.href = "/#contact";
     }
   };
 
@@ -33,7 +53,7 @@ const Nav = () => {
           Home
         </button>
         <button
-          onClick={() => scrollToSection("contact")}
+          onClick={handleContactClick}
           className="hover:text-blue-500 transition-colors cursor-pointer"
         >
           Contact
