@@ -49,6 +49,8 @@
     --receive-color: hsl(220 8.9% 46.1%);
     --receive-bg: var(--ds-gray-100-value);
     --receive-text: black;
+    --offset-top: 280px;
+
   }
 
   /* Dark theme colors with .dark class */
@@ -96,6 +98,8 @@
   @media (max-width: 1024px) {
     :root {
       --window-card-diff: 48px;
+      --offset-top: 170px;
+
       /* --grid-cols-num: 6;
       --grid-rows-num: 5; */
     }
@@ -107,6 +111,7 @@
       --window-card-diff: 28px;
       --grid-cols-num: 10;
       --grid-rows-num: 15;
+      --offset-top: 100px;
     }
   }
 

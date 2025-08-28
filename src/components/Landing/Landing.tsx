@@ -179,11 +179,11 @@ const Landing = () => {
         {/* Name and Title Above Globe */}
         <div
           style={{
-            top: "calc(50% - 280px)",
+            top: "calc(50% - var(--offset-top))",
           }}
           className="absolute left-1/2 transform -translate-x-1/2 z-40 text-center text-[var(--ds-gray-900)] tracking-[-0.98px] w-auto"
         >
-          <strong className="text-3xl sm:text-4xl md:text-5xl text-[var(--receive-text)] mb-2 ">
+          <strong className="text- sm:text-3xl md:text-5xl text-[var(--receive-text)] mb-2 ">
             Philemon Forson
           </strong>
           <p className="text-[25px] sm:text-xl font-semibold  ">
