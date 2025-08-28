@@ -2,7 +2,7 @@ import React from "react";
 
 const Landing = () => {
   return (
-    <section className="relative w-full md:h-[70vh] sm:h-[50vh] flex items-center justify-center overflow-hidden">
+    <section className="relative w-full h-[50vh] md:h-[70vh] sm:h-[50vh] flex items-center justify-center overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-white dark:bg-black transition-colors duration-300 opacity-40"></div>
 
@@ -11,7 +11,7 @@ const Landing = () => {
         {/* React */}
         <div className="floating-skill-bubble absolute top-16 left-8 animate-float-left">
           <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg relative group flex items-center gap-2">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <svg className="w-2 h-2 md:w-4 md:h-4" fill="currentColor" viewBox="0 0 24 24">
               <path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.95c-2.497.378-4.71 1.64-6.092 3.538a8.54 8.54 0 0 0-1.09 2.073 8.48 8.48 0 0 0-.577 2.22c-.096.69-.096 1.42 0 2.11.096.69.296 1.37.577 2.22.296.85.694 1.62 1.09 2.073 1.382 1.898 3.595 3.16 6.092 3.538 2.497.378 4.71-1.64 6.092-3.538.396-.453.794-1.223 1.09-2.073.281-.85.481-1.53.577-2.22.096-.69.096-1.42 0-2.11-.096-.69-.296-1.37-.577-2.22-.296-.85-.694-1.62-1.09-2.073-1.382-1.898-3.595-3.16-6.092-3.538z" />
             </svg>
             React
