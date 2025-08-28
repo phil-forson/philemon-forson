@@ -7,7 +7,7 @@ const Landing = () => {
       <div className="absolute inset-0 bg-white dark:bg-black transition-colors duration-300 opacity-40"></div>
 
       {/* Floating Skill Bubbles */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
+      <div className="absolute hidden md:block inset-0 z-10 pointer-events-none">
         {/* React */}
         <div className="floating-skill-bubble absolute top-16 left-8 animate-float-left">
           <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-2 py-3 md:px-4 md:py-2 rounded-full text-sm font-medium shadow-lg relative group flex items-center gap-2">
