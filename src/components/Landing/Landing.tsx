@@ -1,14 +1,8 @@
 import React from "react";
-import ParticlesBackground from "../ParticlesBackground";
 
 const Landing = () => {
   return (
     <section className="relative w-full md:h-[70vh] sm:h-[50vh] flex items-center justify-center overflow-hidden">
-      {/* Particles Background */}
-      <div className="absolute inset-0 z-[1000]">
-        {/* <ParticlesBackground /> */}
-      </div>
-
       {/* Background Elements */}
       <div className="absolute inset-0 bg-white dark:bg-black transition-colors duration-300 opacity-40"></div>
 
@@ -183,7 +177,12 @@ const Landing = () => {
       {/* 3D Wireframe Globe */}
       <div className="absolute inset-0 flex items-center justify-center translate-y-16 z-30">
         {/* Name and Title Above Globe */}
-        <div className="absolute top-[calc(50% - 900px)] left-1/2 transform -translate-x-1/2 z-40 text-center text-[var(--ds-gray-900)] tracking-[-0.98px] w-auto">
+        <div
+          style={{
+            top: "calc(50% - 280px)",
+          }}
+          className="absolute left-1/2 transform -translate-x-1/2 z-40 text-center text-[var(--ds-gray-900)] tracking-[-0.98px] w-auto"
+        >
           <strong className="text-3xl sm:text-4xl md:text-5xl text-[var(--receive-text)] mb-2 ">
             Philemon Forson
           </strong>
