@@ -52,6 +52,12 @@ const Nav = () => {
         >
           Home
         </button>
+        <a
+          href="/about"
+          className="hover:text-blue-500 transition-colors cursor-pointer"
+        >
+          About
+        </a>
         <button
           onClick={handleContactClick}
           className="hover:text-blue-500 transition-colors cursor-pointer"

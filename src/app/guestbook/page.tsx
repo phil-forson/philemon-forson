@@ -42,6 +42,9 @@ const Guestbook = () => {
   const [notificationType, setNotificationType] = useState<
     "success" | "error" | "info"
   >("info");
+  const [expandedMessages, setExpandedMessages] = useState<Set<string>>(
+    new Set()
+  );
 
   const showNotificationMessage = (
     message: string,
@@ -193,6 +196,23 @@ const Guestbook = () => {
     setEditForm({ message: "" });
   };
 
+  const toggleMessageExpansion = (messageId: string) => {
+    setExpandedMessages((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(messageId)) {
+        newSet.delete(messageId);
+      } else {
+        newSet.add(messageId);
+      }
+      return newSet;
+    });
+  };
+
+  const truncateMessage = (message: string, maxLength: number = 200) => {
+    if (message.length <= maxLength) return message;
+    return message.substring(0, maxLength).trim() + "...";
+  };
+
   const formatDate = (timestamp: any) => {
     if (!timestamp) return "Just now";
 
@@ -275,17 +295,25 @@ const Guestbook = () => {
       <main className="min-h-screen px-4 lg:px-36 py-8 lg:py-16">
         {/* Hero Section */}
         <section className="text-center mb-16">
-          <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
-            <FaComments className="text-white text-3xl" />
-          </div>
-          <h1 className="text-4xl lg:text-5xl font-bold mb-4">Guestbook</h1>
-          <p className="text-lg text-[var(--ds-gray-900)] max-w-2xl mx-auto">
-            Leave a message, share your thoughts, or just say hello! I'd love to
-            hear from you.
-          </p>
-          <div className="mt-4 text-sm text-[var(--ds-gray-600)]">
-            {entries.length} message{entries.length !== 1 ? "s" : ""} • Messages
-            are stored securely
+          <div className="max-w-3xl mx-auto">
+            <h1 className="text-3xl lg:text-4xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Leave Your Mark
+            </h1>
+            <p className="text-base text-[var(--ds-gray-700)] mb-4">
+              Share a thought, leave a message, or just say hello
+            </p>
+            <div className="flex items-center justify-center gap-4 text-xs text-[var(--ds-gray-500)]">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span>
+                  {entries.length} message{entries.length !== 1 ? "s" : ""}
+                </span>
+              </div>
+              <span>•</span>
+              <span>Secure & Private</span>
+              <span>•</span>
+              <span>Real-time</span>
+            </div>
           </div>
         </section>
 
@@ -458,58 +486,6 @@ const Guestbook = () => {
                   </button>
                 </form>
               </div>
-
-              {/* Debug Information (Development Only) */}
-              {process.env.NODE_ENV === "development" && (
-                <div className="mt-4 p-4 bg-gray-50 border border-gray-200 rounded-lg">
-                  <h3 className="text-sm font-semibold mb-2">Debug Info:</h3>
-                  <div className="text-xs space-y-1">
-                    <p>
-                      <strong>User:</strong> {user?.email || "Not signed in"}
-                    </p>
-                    <p>
-                      <strong>User ID:</strong> {user?.uid || "N/A"}
-                    </p>
-                    <p>
-                      <strong>Messages loaded:</strong> {entries.length}
-                    </p>
-                    <p>
-                      <strong>Loading:</strong> {isLoading ? "Yes" : "No"}
-                    </p>
-                    <p>
-                      <strong>Submitting:</strong> {isSubmitting ? "Yes" : "No"}
-                    </p>
-                    <p>
-                      <strong>Firebase Connection:</strong>{" "}
-                      {connectionTest ? (
-                        connectionTest.success ? (
-                          <span className="text-green-600">✓ Working</span>
-                        ) : (
-                          <span className="text-red-600">✗ Failed</span>
-                        )
-                      ) : (
-                        "Testing..."
-                      )}
-                    </p>
-                    {connectionTest && !connectionTest.success && (
-                      <p>
-                        <strong>Connection Error:</strong>{" "}
-                        {connectionTest.message}
-                      </p>
-                    )}
-                    {error && (
-                      <p>
-                        <strong>Error:</strong> {error}
-                      </p>
-                    )}
-                    {success && (
-                      <p>
-                        <strong>Success:</strong> {success}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              )}
             </section>
           </>
         )}
@@ -625,9 +601,23 @@ const Guestbook = () => {
                         </div>
                       </div>
 
-                      <p className="text-[rgb(var(--color-foreground))] leading-relaxed">
-                        {entry.message}
-                      </p>
+                      <div className="text-[rgb(var(--color-foreground))] leading-relaxed">
+                        <p>
+                          {expandedMessages.has(entry.id)
+                            ? entry.message
+                            : truncateMessage(entry.message)}
+                        </p>
+                        {entry.message.length > 200 && (
+                          <button
+                            onClick={() => toggleMessageExpansion(entry.id)}
+                            className="text-blue-500 hover:text-blue-700 text-sm font-medium mt-2 transition-colors"
+                          >
+                            {expandedMessages.has(entry.id)
+                              ? "Show Less"
+                              : "Read More"}
+                          </button>
+                        )}
+                      </div>
                     </>
                   )}
                 </div>

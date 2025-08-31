@@ -123,7 +123,7 @@ const Landing = () => {
         </div> */}
 
         {/* PostgreSQL */}
-        <div className="floating-skill-bubble absolute bottom-16 right-1/3 animate-float-right">
+        {/* <div className="floating-skill-bubble absolute bottom-16 right-1/3 animate-float-right">
           <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-2 py-3 md:px-4 md:py-2 rounded-full text-sm font-medium shadow-lg relative group">
             PostgreSQL
             <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto whitespace-nowrap z-50">
@@ -131,7 +131,7 @@ const Landing = () => {
               <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* AWS */}
         <div className="floating-skill-bubble absolute top-1/4 left-8 animate-float-left">
@@ -186,9 +186,30 @@ const Landing = () => {
           <strong className="text-2xl sm:text-3xl md:text-5xl text-[var(--receive-text)] mb-2 ">
             Philemon Forson
           </strong>
-          <p className="text-xl md:text-[25px] sm:text-xl font-semibold  ">
+          <p className="text-xl md:text-[25px] sm:text-xl font-semibold mb-4">
             Full-Stack Developer & Data Engineer
           </p>
+          <a
+            href="/about"
+            className="inline-flex items-center gap-2 text-sm text-[var(--ds-gray-600)] hover:text-[var(--ds-gray-900)] transition-colors duration-300 group"
+          >
+            <span className="border-b border-transparent group-hover:border-[var(--ds-gray-400)] transition-all duration-300">
+              Learn more about me
+            </span>
+            <svg
+              className="w-3 h-3 transform group-hover:translate-x-1 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
         </div>
 
         <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] 2xl:w-[800px] 2xl:h-[800px]">
