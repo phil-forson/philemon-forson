@@ -93,7 +93,7 @@ const Footer = () => {
               <div className="flex items-center justify-center md:justify-start gap-2">
                 <FaLinkedin className="text-blue-600" />
                 <a
-                  href="https://linkedin.com/in/username"
+                  href="https://www.linkedin.com/in/forson-philemon/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-blue-500 transition-colors"

@@ -189,7 +189,7 @@ const Landing = () => {
           <p className="text-xl md:text-[25px] sm:text-xl font-semibold mb-4">
             Full-Stack Developer & Data Engineer
           </p>
-          <a
+          {/* <a
             href="/about"
             className="inline-flex items-center gap-2 text-sm text-[var(--ds-gray-600)] hover:text-[var(--ds-gray-900)] transition-colors duration-300 group"
           >
@@ -209,10 +209,10 @@ const Landing = () => {
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </a>
+          </a> */}
         </div>
 
-        <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] 2xl:w-[800px] 2xl:h-[800px]">
+        <div className="relative w-[300px] h-[300px] sm:w-[500px] sm:h-[300px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px] 2xl:w-[800px] 2xl:h-[800px]">
           <svg
             aria-hidden="true"
             height="100%"

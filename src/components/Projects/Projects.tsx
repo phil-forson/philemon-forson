@@ -1,14 +1,16 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 import {
   FaGithub,
   FaExternalLinkAlt,
   FaCode,
-  FaDatabase,
-  FaChartLine,
+  FaLaptop,
   FaMobile,
+  FaBrain,
+  FaServer,
+  FaDesktop,
 } from "react-icons/fa";
-import { MdOutlineWeb } from "react-icons/md";
 
 interface Project {
   id: number;
@@ -31,7 +33,13 @@ const Projects = () => {
       title: "Apartment Prediction",
       description:
         "A Next.js application that predicts apartment prices using machine learning models. Features an interactive interface for users to input property details and receive price predictions.",
-      technologies: ["Next.js", "TypeScript", "CSS", "JavaScript"],
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "R",
+        "Machine Learning",
+        "Python",
+      ],
       category: "Full-Stack",
       image: "/api/placeholder/400/250",
       githubUrl: "https://github.com/phil-forson/apartment-prediction",
@@ -116,15 +124,15 @@ const Projects = () => {
       case "Full-Stack":
         return <FaCode className="text-blue-500" />;
       case "Frontend":
-        return <MdOutlineWeb className="text-green-500" />;
+        return <FaLaptop className="text-green-500" />;
       case "Backend":
-        return <FaDatabase className="text-purple-500" />;
-      case "Data":
-        return <FaChartLine className="text-orange-500" />;
-      case "Machine Learning":
-        return <FaChartLine className="text-red-500" />;
+        return <FaServer className="text-purple-500" />;
       case "Mobile":
-        return <FaMobile className="text-indigo-500" />;
+        return <FaMobile className="text-orange-500" />;
+      case "Machine Learning":
+        return <FaBrain className="text-red-500" />;
+      case "Desktop":
+        return <FaDesktop className="text-gray-500" />;
       default:
         return <FaCode className="text-gray-500" />;
     }
@@ -135,8 +143,8 @@ const Projects = () => {
       id="projects"
       className="w-full h-auto lg:px-36 px-4 py-8 lg:py-16"
     >
-      <div className="text-center mb-12 tracking-[-0.98px]">
-        <h2 className="text-3xl lg:text-4xl font-semibold mb-4">
+      <div className="text-center mb-12 ">
+        <h2 className="text-3xl lg:text-4xl font-semibold mb-4 tracking-[-0.98px]">
           Featured Projects
         </h2>
         <p className="text-lg text-[var(--ds-gray-900)] max-w-2xl mx-auto">
@@ -163,84 +171,82 @@ const Projects = () => {
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProjects.map((project, index) => (
-          <div key={project.id} className="window-card">
-            {/* Mac Window Header with Three Dots */}
-            <div className="flex justify-between items-center w-full mb-4">
-              <div className="flex items-center space-x-2">
-                <div className="flex space-x-1">
-                  <span className="w-3 h-3 rounded-full bg-red-500"></span>
-                  <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
-                  <span className="w-3 h-3 rounded-full bg-green-500"></span>
-                </div>
-              </div>
-
-              <div></div>
-            </div>
-
-            {/* Project Content */}
-            <div className="bg-[var(--ds-background-100)]">
-              {/* Category Icon and Title */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="text-3xl text-gray-400">
-                  {getCategoryIcon(project.category)}
-                </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {filteredProjects.map((project: any) => (
+          <div
+            key={project.id}
+            className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-xl p-6 hover:shadow-lg transition-all duration-300 group"
+          >
+            {/* Project Header */}
+            <div className="flex items-start mb-4">
+              <div className="flex items-center gap-3">
+                {getCategoryIcon(project.category)}
                 <div>
-                  <h3 className="text-xl font-semibold leading-tight text-[rgb(var(--color-foreground))]">
+                  <h3 className="font-bold text-lg text-[var(--ds-gray-900)]">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-[var(--ds-gray-900)] uppercase">
+                  <span className="text-sm text-[var(--ds-gray-600)]">
                     {project.category}
-                  </p>
+                  </span>
                 </div>
               </div>
+            </div>
 
-              {/* Description */}
-              <p className="text-sm leading-relaxed mb-4 text-[var(--ds-gray-900)]">
-                {project.description}
-              </p>
+            {/* Project Description */}
+            <p className="text-[var(--ds-gray-900)] text-sm leading-relaxed mb-4">
+              {project.description}
+            </p>
 
-              {/* Technologies */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.technologies.map((tech, techIndex) => (
+            {/* Technologies */}
+            <div className="mb-4">
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((tech: string, index: number) => (
                   <span
-                    key={techIndex}
-                    className="px-3 py-1 bg-[var(--ds-gray-100-value)] text-xs rounded-full text-[var(--ds-gray-900)] border border-[var(--ds-gray-200-value)] font-medium hover:bg-[var(--ds-gray-200-value)] transition-colors cursor-default"
+                    key={index}
+                    className="px-2 py-1 bg-[var(--ds-gray-100-value)] text-[var(--ds-gray-700)] text-xs rounded-md"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
+            </div>
 
-              {/* Action Buttons */}
-              <div className="flex gap-2">
-                {project.githubUrl && (
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-[var(--ds-gray-100-value)] text-[rgb(var(--color-foreground))] px-3 py-2 rounded-lg text-sm font-medium hover:bg-[var(--ds-gray-200-value)] transition-all duration-300 flex items-center justify-center gap-2 border border-[var(--ds-gray-200-value)]"
-                  >
-                    <FaGithub />
-                    Code
-                  </a>
-                )}
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-2 rounded-lg text-sm font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 flex items-center justify-center gap-2"
-                  >
-                    <FaExternalLinkAlt />
-                    Live
-                  </a>
-                )}
-              </div>
+            {/* Project Links */}
+            <div className="flex gap-3">
+              <Link
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm font-medium text-[var(--ds-gray-700)] hover:text-[var(--ds-gray-900)] transition-colors"
+              >
+                <FaGithub className="text-lg" />
+                Code
+              </Link>
+              {project.liveUrl && (
+                <Link
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                >
+                  <FaExternalLinkAlt className="text-sm" />
+                  Live Demo
+                </Link>
+              )}
             </div>
           </div>
         ))}
+      </div>
+
+      {/* View More Projects Link */}
+      <div className="text-right">
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+        >
+          View All Projects
+          <FaExternalLinkAlt className="text-sm" />
+        </Link>
       </div>
     </section>
   );
