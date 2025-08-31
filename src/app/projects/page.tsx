@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Projects from "@/components/Projects/Projects";
 
-const page = () => {
+const ProjectsPage = () => {
   return (
-    <div>page</div>
-  )
-}
+    <div className="min-h-screen">
+      <Projects />
+    </div>
+  );
+};
 
-export default page
+export default ProjectsPage;

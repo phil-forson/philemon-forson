@@ -28,71 +28,71 @@ const Projects = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "E-Commerce Platform",
+      title: "Apartment Prediction",
       description:
-        "A full-stack e-commerce application with user authentication, product management, and payment integration.",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+        "A Next.js application that predicts apartment prices using machine learning models. Features an interactive interface for users to input property details and receive price predictions.",
+      technologies: ["Next.js", "TypeScript", "CSS", "JavaScript"],
       category: "Full-Stack",
       image: "/api/placeholder/400/250",
-      githubUrl: "https://github.com/username/ecommerce",
-      liveUrl: "https://ecommerce-demo.com",
+      githubUrl: "https://github.com/phil-forson/apartment-prediction",
+      liveUrl: "https://apartment-prediction.vercel.app",
       featured: true,
     },
     {
       id: 2,
-      title: "Data Analytics Dashboard",
+      title: "Stock Market Web App",
       description:
-        "Interactive dashboard for visualizing business metrics with real-time data updates and custom reporting.",
-      technologies: ["Python", "Dash", "PostgreSQL", "Redis"],
-      category: "Data",
+        "A modern web application for tracking and analyzing stock market data. Built with Vite and React, featuring real-time market data visualization and interactive charts.",
+      technologies: ["React", "TypeScript", "Vite", "Tailwind CSS"],
+      category: "Frontend",
       image: "/api/placeholder/400/250",
-      githubUrl: "https://github.com/username/dashboard",
+      githubUrl: "https://github.com/phil-forson/stock-market-web-app",
       featured: true,
     },
     {
       id: 3,
-      title: "Task Management App",
+      title: "E-commerce Backend",
       description:
-        "Collaborative task management tool with real-time updates, team collaboration, and progress tracking.",
-      technologies: ["Next.js", "TypeScript", "Prisma", "Socket.io"],
-      category: "Full-Stack",
+        "A robust backend API for e-commerce applications built with NestJS. Features user authentication, product management, order processing, and comprehensive testing suite.",
+      technologies: ["NestJS", "TypeScript", "Node.js"],
+      category: "Backend",
       image: "/api/placeholder/400/250",
-      githubUrl: "https://github.com/username/taskmanager",
-      featured: false,
+      githubUrl: "https://github.com/phil-forson/ecommerce-backend",
+      featured: true,
     },
     {
       id: 4,
-      title: "ML Recommendation Engine",
+      title: "Algorithmic Trading Data Science",
       description:
-        "Machine learning-based recommendation system for personalized content suggestions.",
-      technologies: ["Python", "Scikit-learn", "Pandas", "FastAPI"],
+        "A comprehensive data science project focused on algorithmic trading strategies. Features financial data analysis, trading algorithms, and market prediction models using Python.",
+      technologies: ["Python", "Data Science", "Machine Learning"],
       category: "Machine Learning",
       image: "/api/placeholder/400/250",
-      githubUrl: "https://github.com/username/recommender",
-      featured: false,
+      githubUrl:
+        "https://github.com/phil-forson/Algorithmic-Trading-Data-Science-Project",
+      featured: true,
     },
     {
       id: 5,
-      title: "Portfolio Website",
+      title: "Shoprite Inventory Management",
       description:
-        "Modern, responsive portfolio website built with Next.js and Tailwind CSS.",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
-      category: "Frontend",
+        "A comprehensive Windows Forms application for managing Shoprite's inventory system. Features user authentication, inventory tracking, and business management tools built with C#.",
+      technologies: ["C#", ".NET", "Windows Forms"],
+      category: "Desktop",
       image: "/api/placeholder/400/250",
-      githubUrl: "https://github.com/username/portfolio",
-      liveUrl: "https://philemonforson.com",
+      githubUrl: "https://github.com/phil-forson/Shoprite-Inventory-Management",
       featured: true,
     },
     {
       id: 6,
-      title: "API Gateway Service",
+      title: "CropApp",
       description:
-        "Microservices API gateway with authentication, rate limiting, and request routing.",
-      technologies: ["Node.js", "Express", "Redis", "JWT"],
-      category: "Backend",
+        "A React Native mobile application for crop management and agricultural assistance. Features user authentication, data management, and Firebase integration for real-time updates.",
+      technologies: ["React Native", "JavaScript", "Firebase"],
+      category: "Mobile",
       image: "/api/placeholder/400/250",
-      githubUrl: "https://github.com/username/gateway",
-      featured: false,
+      githubUrl: "https://github.com/phil-forson/CropApp",
+      featured: true,
     },
   ];
 
@@ -101,7 +101,8 @@ const Projects = () => {
     "Full-Stack",
     "Frontend",
     "Backend",
-    "Data",
+    "Desktop",
+    "Mobile",
     "Machine Learning",
   ];
 
@@ -122,6 +123,8 @@ const Projects = () => {
         return <FaChartLine className="text-orange-500" />;
       case "Machine Learning":
         return <FaChartLine className="text-red-500" />;
+      case "Mobile":
+        return <FaMobile className="text-indigo-500" />;
       default:
         return <FaCode className="text-gray-500" />;
     }
@@ -150,7 +153,7 @@ const Projects = () => {
             onClick={() => setActiveFilter(category)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               activeFilter === category
-                ? "bg-blue-500 text-white shadow-lg"
+                ? "bg-blue-500 text-white"
                 : "bg-[rgba(var(--color-background))] text-[var(--ds-gray-900)] border border-[var(--ds-gray-200-value)] hover:border-blue-300"
             }`}
           >
@@ -217,7 +220,7 @@ const Projects = () => {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 bg-[var(--ds-gray-100-value)] text-[rgb(var(--color-foreground))] px-3 py-2 rounded-lg text-sm font-medium hover:bg-[var(--ds-gray-200-value)] transition-all duration-300 flex items-center justify-center gap-2 border border-[var(--ds-gray-200-value)] hover:shadow-md"
+                    className="flex-1 bg-[var(--ds-gray-100-value)] text-[rgb(var(--color-foreground))] px-3 py-2 rounded-lg text-sm font-medium hover:bg-[var(--ds-gray-200-value)] transition-all duration-300 flex items-center justify-center gap-2 border border-[var(--ds-gray-200-value)]"
                   >
                     <FaGithub />
                     Code
@@ -228,7 +231,7 @@ const Projects = () => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-2 rounded-lg text-sm font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+                    className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-2 rounded-lg text-sm font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     <FaExternalLinkAlt />
                     Live
