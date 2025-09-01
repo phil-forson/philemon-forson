@@ -294,15 +294,17 @@ const Guestbook = () => {
 
       <main className="min-h-screen px-4 lg:px-36 py-8 lg:py-16 flex flex-col">
         {/* Hero Section */}
-        <section className="text-center mb-6">
+        <section className="text-center mb-3">
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-2xl lg:text-3xl font-bold mb-2">
-              <span className="text-[var(--ds-gray-900)]">Leave Your </span>
-              <span className="text-blue-600">Mark</span>
+            <h1 className=" font-bold mb-2">
+              <span className="text-3xl lg:text-4xl text-[var(--ds-gray-900)]">
+                Leave Your{" "}
+              </span>
+              <span className="text-blue-600 text-5xl lowercase">Mark.</span>
             </h1>
-            <p className="text-sm text-[var(--ds-gray-700)] mb-3">
+            {/* <p className="text-sm text-[var(--ds-gray-700)] mb-3">
               Share a thought, leave a message, or just say hello
-            </p>
+            </p> */}
             <div className="flex items-center justify-center gap-3 text-xs text-[var(--ds-gray-500)]">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -312,8 +314,6 @@ const Guestbook = () => {
               </div>
               <span>•</span>
               <span>Secure & Private</span>
-              <span>•</span>
-              <span>Real-time</span>
             </div>
           </div>
         </section>
@@ -322,9 +322,7 @@ const Guestbook = () => {
         {!user ? (
           <section className="mb-8">
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold text-[var(--ds-gray-900)] mb-3">
-                Join the Conversation
-              </h2>
+              <h2 className="text-2xl font-bold mb-3">Join the Conversation</h2>
               <p className="text-[var(--ds-gray-700)] text-base leading-relaxed mb-6">
                 Ready to leave your mark? Sign in with your preferred account
                 and start sharing your thoughts with the community.
@@ -390,48 +388,48 @@ const Guestbook = () => {
           <>
             {/* User Info */}
             <section className="mb-6 max-w-2xl mx-auto">
-              <div className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-lg p-4">
+              <div className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-xl p-3 sm:p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     {user.photoURL && (
                       <img
                         src={user.photoURL}
                         alt={user.displayName || "User"}
-                        className="w-10 h-10 rounded-full"
+                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-full"
                       />
                     )}
-                    <div>
-                      <h3 className="font-semibold text-base">
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-semibold text-sm sm:text-base truncate">
                         Welcome, {user.displayName || user.email?.split("@")[0]}
                         !
                       </h3>
-                      <p className="text-xs text-[var(--ds-gray-600)]">
+                      <p className="text-xs text-[var(--ds-gray-600)] truncate">
                         {user.email}
                       </p>
                     </div>
                   </div>
                   <button
                     onClick={logout}
-                    className="text-red-500 hover:text-red-700 flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-red-50 transition-colors"
+                    className="text-red-500 hover:text-red-700 flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg transition-colors text-xs sm:text-sm"
                   >
-                    <FaSignOutAlt />
-                    Sign Out
+                    <FaSignOutAlt className="text-xs sm:text-sm" />
+                    <span className="hidden sm:inline">Sign Out</span>
                   </button>
                 </div>
               </div>
             </section>
 
             {/* Add New Entry Form */}
-            <section className="mb-16 max-w-2xl mx-auto">
-              <div className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-lg p-6">
-                <h2 className="text-2xl font-semibold mb-6 flex items-center gap-3">
+            <section className="mb-8 w-1/3 mx-auto">
+              <div className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-xl p-4 sm:p-6">
+                <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 flex items-center gap-3">
                   <FaPaperPlane className="text-blue-500" />
                   Leave a Message
                 </h2>
 
                 {/* Error Message */}
                 {error && (
-                  <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <div className="mb-4 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg">
                     <p className="text-red-700 text-sm">
                       <strong>Error:</strong> {error}
                     </p>
@@ -440,7 +438,7 @@ const Guestbook = () => {
 
                 {/* Success Message */}
                 {success && (
-                  <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <div className="mb-4 p-3 sm:p-4 bg-green-50 border border-green-200 rounded-lg">
                     <p className="text-green-700 text-sm">
                       <strong>Success:</strong> {success}
                     </p>
@@ -451,7 +449,7 @@ const Guestbook = () => {
                   <div>
                     <label
                       htmlFor="message"
-                      className="block text-sm font-medium mb-2"
+                      className="block text-sm font-medium mb-2 text-[var(--ds-gray-900)]"
                     >
                       Message
                     </label>
@@ -462,20 +460,22 @@ const Guestbook = () => {
                         setNewEntry({ ...newEntry, message: e.target.value })
                       }
                       rows={4}
-                      className="w-full px-4 py-2 border border-[var(--ds-gray-200-value)] rounded-lg bg-[rgba(var(--color-background))] focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-                      placeholder="Share your thoughts..."
+                      className="w-full px-4 py-3 border-[1.5px] border-[var(--ds-gray-200-value)] rounded-xl bg-[rgba(var(--color-background))] focus:outline-none focus:ring-blue-500 focus:border-blue-500 resize-none transition-all duration-200 text-[var(--ds-gray-900)] placeholder-[var(--ds-gray-500)]"
+                      placeholder="Share your thoughts, ideas, or just say hello..."
                       required
                       maxLength={500}
                     />
-                    <div className="text-right text-sm text-[var(--ds-gray-500)] mt-1">
-                      {newEntry.message.length}/500
+                    <div className="flex justify-between items-center text-sm text-[var(--ds-gray-500)] mt-2">
+                      <span className="text-xs font-medium">
+                        {newEntry.message.length}/500
+                      </span>
                     </div>
                   </div>
 
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    disabled={isSubmitting || !newEntry.message.trim()}
+                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
                   >
                     {isSubmitting ? (
                       <>
@@ -484,7 +484,7 @@ const Guestbook = () => {
                       </>
                     ) : (
                       <>
-                        <FaPaperPlane />
+                        <FaPaperPlane className="text-sm" />
                         Send Message
                       </>
                     )}
@@ -498,13 +498,13 @@ const Guestbook = () => {
         {/* Guestbook Entries */}
         <section className="flex-1">
           <div className="mb-6">
-            <h2 className="text-xl font-bold text-[var(--ds-gray-900)] flex items-center gap-3 mb-2">
-              <FaComments className="text-green-500 text-xl" />
+            <h2 className="text-lg sm:text-xl font-bold text-[var(--ds-gray-900)] flex items-center gap-3 mb-2">
+              <FaComments className="text-green-500 text-lg sm:text-xl" />
               Recent Messages
             </h2>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {isLoading ? (
               <div className="text-center py-12">
                 <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
@@ -521,7 +521,7 @@ const Guestbook = () => {
               entries.map((entry) => (
                 <div
                   key={entry.id}
-                  className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-xl p-6 hover:shadow-md transition-all duration-200"
+                  className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-xl p-4 sm:p-6 hover:shadow-md transition-all duration-200"
                 >
                   {editingId === entry.id ? (
                     // Edit Form
@@ -563,53 +563,59 @@ const Guestbook = () => {
                   ) : (
                     // Display Entry
                     <>
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex items-center gap-4">
+                      <div className="flex items-start justify-between mb-3 sm:mb-4">
+                        <div className="flex items-center gap-3 sm:gap-4">
                           {entry.userPhotoURL ? (
                             <img
                               src={entry.userPhotoURL}
                               alt={entry.name}
-                              className="w-12 h-12 rounded-full border-2 border-[var(--ds-gray-100-value)] shadow-sm"
+                              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[var(--ds-gray-100-value)] shadow-sm"
                             />
                           ) : (
-                            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-sm">
-                              <FaUser className="text-white text-base" />
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-sm">
+                              <FaUser className="text-white text-sm sm:text-base" />
                             </div>
                           )}
-                          <div>
-                            <h3 className="font-bold text-base text-[var(--ds-gray-900)]">
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-bold text-sm sm:text-base text-[var(--ds-gray-900)] truncate">
                               {entry.name}
                             </h3>
                             <div className="flex items-center gap-2 text-xs text-[var(--ds-gray-600)]">
                               <FaCalendar className="text-xs" />
-                              {formatDate(entry.createdAt)}
+                              <span className="hidden sm:inline">
+                                {formatDate(entry.createdAt)}
+                              </span>
                               <span className="text-xs text-[var(--ds-gray-500)]">
-                                • {formatRelativeTime(entry.createdAt)}
+                                {formatRelativeTime(entry.createdAt)}
                               </span>
                             </div>
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => handleEdit(entry)}
-                            className="text-blue-500 hover:text-blue-700 transition-colors p-2 rounded-lg hover:bg-blue-50"
-                            title="Edit message"
-                          >
-                            <FaEdit className="text-sm" />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(entry.id)}
-                            className="text-red-500 hover:text-red-700 transition-colors p-2 rounded-lg hover:bg-red-50"
-                            title="Delete message"
-                          >
-                            <FaTrash className="text-sm" />
-                          </button>
+                        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                          {user && entry.userId === user.uid && (
+                            <>
+                              <button
+                                onClick={() => handleEdit(entry)}
+                                className="text-blue-500 hover:text-blue-700 transition-colors p-1.5 sm:p-2 rounded-lg hover:bg-blue-50"
+                                title="Edit message"
+                              >
+                                <FaEdit className="text-xs sm:text-sm" />
+                              </button>
+                              <button
+                                onClick={() => handleDelete(entry.id)}
+                                className="text-red-500 hover:text-red-700 transition-colors p-1.5 sm:p-2 rounded-lg hover:bg-red-50"
+                                title="Delete message"
+                              >
+                                <FaTrash className="text-xs sm:text-sm" />
+                              </button>
+                            </>
+                          )}
                         </div>
                       </div>
 
                       <div className="text-[rgb(var(--color-foreground))] leading-relaxed">
-                        <p className="text-base leading-7">
+                        <p className="text-sm sm:text-base leading-6 sm:leading-7">
                           {expandedMessages.has(entry.id)
                             ? entry.message
                             : truncateMessage(entry.message)}
@@ -617,7 +623,7 @@ const Guestbook = () => {
                         {entry.message.length > 200 && (
                           <button
                             onClick={() => toggleMessageExpansion(entry.id)}
-                            className="text-blue-600 hover:text-blue-800 text-sm font-semibold mt-3 transition-colors hover:underline"
+                            className="text-blue-600 hover:text-blue-800 text-xs sm:text-sm font-semibold mt-2 sm:mt-3 transition-colors hover:underline"
                           >
                             {expandedMessages.has(entry.id)
                               ? "Show Less"
