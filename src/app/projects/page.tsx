@@ -145,7 +145,7 @@ const ProjectsPage = () => {
     <div className="font-[family-name:var(--font-geist-sans)]">
       <Nav />
       {/* Hero Section */}
-      <section className="text-center pt-16 pb-5 px-4 lg:px-36">
+      <section className="text-center pt-16 px-4 lg:px-36">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             My Projects
@@ -158,7 +158,7 @@ const ProjectsPage = () => {
       </section>
 
       {/* Current Projects Section */}
-      <section className="px-4 lg:px-36 py-16">
+      <section className="px-4 lg:px-36 py-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">All Projects</h2>

@@ -41,7 +41,7 @@ const About = () => {
                 scalable solutions that drive innovation and growth.
               </p>
               <p className="text-lg text-[var(--ds-gray-900)] leading-relaxed">
-                Based in Accra, Ghana, I work with modern technologies like
+                Based in Dallas, Texas, I work with modern technologies like
                 React, Node.js, Python, and cloud platforms to create
                 applications that are not just functional, but truly impactful
                 for users and businesses alike.

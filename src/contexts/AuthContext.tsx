@@ -6,6 +6,9 @@ import {
   signOut,
   onAuthStateChanged,
   AuthError,
+  GithubAuthProvider,
+  fetchSignInMethodsForEmail,
+  linkWithCredential,
 } from "firebase/auth";
 import { auth, googleProvider, githubProvider } from "@/lib/firebase";
 
@@ -17,6 +20,7 @@ interface AuthContextType {
   logout: () => Promise<void>;
   authError: string | null;
   clearAuthError: () => void;
+  isLinkingAccount: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -35,6 +39,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [authError, setAuthError] = useState<string | null>(null);
+  const [isLinkingAccount, setIsLinkingAccount] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -86,13 +91,70 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const signInWithGithub = async () => {
+    setAuthError(null);
+    setIsLinkingAccount(false);
+
+    // Ensure GitHub returns email
+    githubProvider.addScope("user:email");
+
     try {
-      setAuthError(null);
       await signInWithPopup(auth, githubProvider);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error signing in with GitHub:", error);
-      const errorMessage = getErrorMessage(error as AuthError);
-      setAuthError(errorMessage);
+
+      // Handle the specific case where account exists with different credential
+      if (error.code === "auth/account-exists-with-different-credential") {
+        const email = error.customData?.email;
+        const pendingCred = GithubAuthProvider.credentialFromError(error);
+
+        if (email && pendingCred) {
+          try {
+            // Check what sign-in methods are available for this email
+            const methods = await fetchSignInMethodsForEmail(auth, email);
+
+            if (methods.includes("google.com")) {
+              setIsLinkingAccount(true);
+              setAuthError(
+                `An account with ${email} already exists with Google. Please sign in with Google first, then we'll link your GitHub account.`
+              );
+
+              // Sign in with Google
+              const googleResult = await signInWithPopup(auth, googleProvider);
+
+              // Link the pending GitHub credential to the existing user
+              await linkWithCredential(googleResult.user, pendingCred);
+
+              setIsLinkingAccount(false);
+              setAuthError(
+                "Successfully linked GitHub account! You can now use either Google or GitHub to sign in."
+              );
+
+              // Clear success message after 3 seconds
+              setTimeout(() => {
+                setAuthError(null);
+              }, 3000);
+            } else {
+              setAuthError(
+                `An account with ${email} exists but uses a different sign-in method. Please contact support.`
+              );
+            }
+          } catch (linkError: any) {
+            console.error("Error linking accounts:", linkError);
+            setIsLinkingAccount(false);
+            setAuthError(
+              "Failed to link accounts. Please try again or contact support."
+            );
+          }
+        } else {
+          setAuthError(
+            "Unable to link accounts. Please try signing in with Google first."
+          );
+        }
+      } else {
+        // Handle other errors
+        const errorMessage = getErrorMessage(error as AuthError);
+        setAuthError(errorMessage);
+      }
     }
   };
 
@@ -118,6 +180,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     logout,
     authError,
     clearAuthError,
+    isLinkingAccount,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

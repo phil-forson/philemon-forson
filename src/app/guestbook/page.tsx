@@ -420,7 +420,7 @@ const Guestbook = () => {
             </section>
 
             {/* Add New Entry Form */}
-            <section className="mb-8 w-1/3 mx-auto">
+            <section className="mb-8 w-2/3 md:w-1/3 mx-auto">
               <div className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-xl p-4 sm:p-6">
                 <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 flex items-center gap-3">
                   <FaPaperPlane className="text-blue-500" />
