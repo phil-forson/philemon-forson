@@ -53,10 +53,10 @@ const Contact = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 ">
-          <h2 className="text-3xl lg:text-4xl font-semibold mb-4 tracking-[-0.98px]">
+          <h2 className="text-2xl lg:text-4xl font-semibold mb-4 tracking-[-0.98px]">
             Get In Touch
           </h2>
-          <p className="text-lg text-[var(--ds-gray-900)] max-w-2xl mx-auto">
+          <p className="text-xl text-[var(--ds-gray-900)] max-w-2xl mx-auto">
             I'm always open to discussing new opportunities, interesting
             projects, or just having a chat about technology.
           </p>
