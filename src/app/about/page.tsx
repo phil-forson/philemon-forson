@@ -22,10 +22,10 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Quote */}
             <div className="text-center lg:text-left">
-              <div className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-                "I create solutions
+              <div className="text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
+                "I engineer solutions
                 <br />
-                <span className="text-blue-500">that matter."</span>
+                <span className="text-blue-500">that users love."</span>
               </div>
               <div className="text-sm text-[var(--ds-gray-900)]">
                 - PHILEMON FORSON
@@ -35,16 +35,17 @@ const About = () => {
             {/* Right Column - Description */}
             <div className="space-y-6">
               <p className="text-lg text-[var(--ds-gray-900)] leading-relaxed">
-                I believe in building technology that makes a real difference in
-                people's lives. With expertise in full-stack development and
-                data engineering, I transform complex challenges into elegant,
-                scalable solutions that drive innovation and growth.
+                I focus primarily on functionality and performance, but I also
+                have an eye for creating visually appealing experiences. With
+                expertise in full-stack development and data engineering, I
+                transform complex challenges into elegant, scalable solutions
+                that work beautifully and efficiently.
               </p>
               <p className="text-lg text-[var(--ds-gray-900)] leading-relaxed">
                 Based in Dallas, Texas, I work with modern technologies like
-                React, Node.js, Python, and cloud platforms to create
-                applications that are not just functional, but truly impactful
-                for users and businesses alike.
+                React, Node.js, Python, and cloud platforms to build
+                applications that are not just functional and fast, but also
+                visually engaging and user-friendly.
               </p>
               <div className="pt-4">
                 <a
@@ -181,9 +182,14 @@ const About = () => {
               <h3 className="text-xl font-semibold mb-2">
                 Master of Science, Business Analytics
               </h3>
-              <p className="text-blue-500 mb-2">
+              <a
+                href="https://www.utdallas.edu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-700 transition-colors mb-2 block"
+              >
                 The University of Texas at Dallas
-              </p>
+              </a>
               <p className="text-[var(--ds-gray-900)] mb-3">
                 Expected Graduation: 2026 • GPA: 4.0
               </p>
@@ -207,9 +213,14 @@ const About = () => {
               <h3 className="text-xl font-semibold mb-2">
                 Bachelor of Science, Computer Science
               </h3>
-              <p className="text-blue-500 mb-2">
+              <a
+                href="https://www.ug.edu.gh/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-blue-700 transition-colors mb-2 block"
+              >
                 University of Ghana, Legon, Accra, Ghana
-              </p>
+              </a>
               <p className="text-[var(--ds-gray-900)] mb-3">
                 Graduated: January 2024
               </p>
@@ -252,9 +263,14 @@ const About = () => {
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h3 className="text-xl font-semibold">Software Developer</h3>
-                  <p className="text-blue-500">
+                  <a
+                    href="https://www.logicielghana.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-700 transition-colors"
+                  >
                     Logiciel Ghana Limited, Accra, Ghana
-                  </p>
+                  </a>
                 </div>
                 <span className="text-sm text-[var(--ds-gray-900)]">
                   November 2023 – January 2025
@@ -292,7 +308,14 @@ const About = () => {
                   <h3 className="text-xl font-semibold">
                     Software Developer Intern
                   </h3>
-                  <p className="text-blue-500">Grundfos, Accra, Ghana</p>
+                  <a
+                    href="https://www.grundfos.com/gh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-700 transition-colors"
+                  >
+                    Grundfos, Accra, Ghana
+                  </a>
                 </div>
                 <span className="text-sm text-[var(--ds-gray-900)]">
                   January 2022 – April 2023

@@ -6,13 +6,14 @@ export default function Loading() {
         <h2 className="text-xl font-semibold text-[rgb(var(--color-foreground))] mb-2">
           Loading...
         </h2>
-        <p className="text-[rgb(var(--muted-foreground))]">
-          Please wait while we prepare your experience
+        <p className="text-[var(--ds-gray-900)]">
+          Please wait
         </p>
       </div>
     </div>
   );
 }
+
 
 
 
