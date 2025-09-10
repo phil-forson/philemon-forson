@@ -147,7 +147,7 @@ const Projects = () => {
         <h2 className="text-2xl lg:text-4xl font-semibold mb-4 tracking-[-0.98px]">
           Featured Projects
         </h2>
-        <p className="text-lg md:text-lg text-[var(--ds-gray-900)] max-w-2xl mx-auto">
+        <p className=" text-base lg:text-lg text-[var(--ds-gray-900)] max-w-2xl mx-auto">
           Here are some of the projects I've worked on. Each one represents a
           unique challenge and learning opportunity.
         </p>

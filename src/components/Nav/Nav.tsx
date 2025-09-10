@@ -47,7 +47,6 @@ const Nav = () => {
 
   const scrollToSection = (sectionId: string) => {
     if (!isHomePage) {
-      // If not on home page, navigate to home page first
       window.location.href = "/";
       return;
     }
