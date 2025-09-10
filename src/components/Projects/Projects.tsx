@@ -212,7 +212,7 @@ const Projects = () => {
             </div>
 
             {/* Project Links */}
-            <div className="flex gap-3">
+            <div className="flex gap-3 items-center justify-between">
               <Link
                 href={project.githubUrl}
                 target="_blank"
