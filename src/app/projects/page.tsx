@@ -160,13 +160,13 @@ const ProjectsPage = () => {
       {/* Current Projects Section */}
       <section className="px-4 lg:px-36 py-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
+          {/* <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">All Projects</h2>
             <p className="text-[var(--ds-gray-900)] max-w-2xl mx-auto">
               A comprehensive collection of my projects showcasing skills across
               different technologies and domains.
             </p>
-          </div>
+          </div> */}
 
           {/* Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-3 mb-8">
