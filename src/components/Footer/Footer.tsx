@@ -82,7 +82,7 @@ const Footer = () => {
               <div className="flex items-center justify-center md:justify-start gap-2">
                 <FaGithub className="text-gray-600" />
                 <a
-                  href="https://github.com/username"
+                  href="https://github.com/phil-forson"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-blue-500 transition-colors"
