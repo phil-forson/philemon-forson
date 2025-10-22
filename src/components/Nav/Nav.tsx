@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
+import Link from "next/link";
 
 const Nav = () => {
   const pathname = usePathname();
@@ -85,7 +86,9 @@ const Nav = () => {
   return (
     <header className="header_main px-4 sticky top-0 flex justify-between items-center">
       <div className=" gap-2 items-center hidden md:flex">
-        <p className="text-sm">Philemon Forson</p>
+        <Link href="/" className="text-sm">
+          Philemon Forson
+        </Link>
         <p className="px-2 py-1 text-xs bg-[var(--muted)] rounded-md">
           Software Developer And Data Engineer
         </p>
@@ -100,7 +103,7 @@ const Nav = () => {
         >
           Home
         </button>
-        <a
+        <Link
           href="/about"
           className={`hover:text-blue-500 transition-colors cursor-pointer ${getActiveClass(
             "page",
@@ -108,7 +111,7 @@ const Nav = () => {
           )}`}
         >
           About
-        </a>
+        </Link>
         <button
           onClick={handleContactClick}
           className={`hover:text-blue-500 transition-colors cursor-pointer ${getActiveClass(
@@ -118,7 +121,7 @@ const Nav = () => {
         >
           Contact
         </button>
-        <a
+        <Link
           href="/projects"
           className={`hover:text-blue-500 transition-colors cursor-pointer ${getActiveClass(
             "page",
@@ -126,8 +129,8 @@ const Nav = () => {
           )}`}
         >
           Projects
-        </a>
-        <a
+        </Link>
+        <Link
           href="/guestbook"
           className={`hover:text-blue-500 transition-colors cursor-pointer ${getActiveClass(
             "page",
@@ -135,7 +138,7 @@ const Nav = () => {
           )}`}
         >
           Guestbook
-        </a>
+        </Link>
         <ThemeSwitch />
       </div>
     </header>
