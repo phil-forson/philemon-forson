@@ -21,8 +21,8 @@ const Nav = () => {
       const element = document.getElementById(sectionId);
       if (element) {
         const rect = element.getBoundingClientRect();
-        const offsetTop = element.offsetTop - navHeight;
-        const offsetBottom = offsetTop + element.offsetHeight;
+        const offsetTop = element.offsetTop - navHeight - 12;
+        const offsetBottom = offsetTop + element.offsetHeight + 12;
 
         if (window.scrollY >= offsetTop && window.scrollY < offsetBottom) {
           return sectionId;
