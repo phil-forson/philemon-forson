@@ -155,10 +155,10 @@ const Footer = () => {
               <div className="flex items-center justify-center md:justify-start gap-2">
                 <FaEnvelope className="text-blue-500" />
                 <a
-                  href="mailto:forsonphilemon1@gmail.com"
+                  href="mailto:simplelogin-newsletter.contour409@simplelogin.com"
                   className="hover:text-blue-500 transition-colors"
                 >
-                  forsonphilemon1@gmail.com
+                  simplelogin-newsletter.contour409@simplelogin.com
                 </a>
               </div>
               <div className="flex items-center justify-center md:justify-start gap-2">

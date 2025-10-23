@@ -49,7 +49,7 @@ const About = () => {
               </p>
               <div className="pt-4">
                 <a
-                  href="mailto:forsonphilemon1@gmail.com"
+                  href="mailto:simplelogin-newsletter.contour409@simplelogin.com"
                   className="inline-flex items-center gap-2 text-white hover:text-blue-400 transition-colors font-medium"
                 >
                   Get in touch
@@ -359,7 +359,7 @@ const About = () => {
               projects.
             </p>
             <a
-              href="mailto:forsonphilemon1@gmail.com"
+              href="mailto:simplelogin-newsletter.contour409@simplelogin.com"
               className="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
               Let's Connect
