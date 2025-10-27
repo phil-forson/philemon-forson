@@ -264,7 +264,7 @@ const About = () => {
                 <div>
                   <h3 className="text-xl font-semibold">Software Developer</h3>
                   <a
-                    href="https://www.logicielghana.com/"
+                    href="https://logicielghana.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:text-blue-700 transition-colors"
