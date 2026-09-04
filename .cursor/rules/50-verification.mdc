@@ -1,0 +1,30 @@
+---
+description: Verification and completion standards for code changes.
+globs:
+  - "**/*"
+alwaysApply: false
+---
+
+# Verification
+
+Before marking implementation complete:
+
+1. Inspect `package.json` and use the repository's actual package manager/scripts.
+2. Run the relevant checks available for the changed area.
+3. For application-code changes, run a production build unless impossible.
+4. Run type checking when available; if no script exists, use a suitable non-mutating TypeScript check after confirming configuration.
+5. Run lint/tests when configured and functional.
+6. Do not change configuration merely to suppress a failure unless the configuration itself is the bug.
+7. Never delete a failing test to obtain a green result.
+8. Distinguish pre-existing failures from failures introduced by the change.
+9. Review the final diff for accidental generated files, secrets, debug logs, or unrelated edits.
+10. Report commands and results accurately.
+
+For UI changes, also verify:
+
+- mobile/narrow layout;
+- keyboard navigation;
+- focus visibility;
+- light/dark themes where applicable;
+- loading/error/empty states affected by the change;
+- links/buttons still point to intended destinations.

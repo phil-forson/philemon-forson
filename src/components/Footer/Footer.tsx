@@ -52,35 +52,6 @@ const Footer = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHomePage]);
 
-  const scrollToSection = (sectionId: string) => {
-    if (!isHomePage) {
-      window.location.href = "/";
-      return;
-    }
-
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const navHeight = 64; // Height of the navigation bar
-      const elementPosition = element.offsetTop - navHeight;
-
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const handleContactClick = () => {
-    if (isHomePage) {
-      // If on home page, scroll to contact section
-      scrollToSection("contact");
-    } else {
-      // If on guestbook page, navigate to home page and scroll to contact
-      window.location.href = "/#contact";
-    }
-  };
-
-  // Helper function to get active class
   const getActiveClass = (linkType: "page" | "section", value: string) => {
     if (linkType === "page") {
       return pathname === value ? "text-blue-500 font-semibold" : "";
@@ -119,15 +90,15 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <button
-                  onClick={handleContactClick}
-                  className={`hover:text-blue-500 transition-colors cursor-pointer ${getActiveClass(
+                <Link
+                  href={isHomePage ? "#contact" : "/#contact"}
+                  className={`hover:text-blue-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 rounded-sm ${getActiveClass(
                     "section",
                     "contact"
                   )}`}
                 >
                   Contact
-                </button>
+                </Link>
               </li>
               <li>
                 <Link

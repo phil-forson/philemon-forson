@@ -1,0 +1,42 @@
+---
+description: Ban CSS, Tailwind, and SVG gradients in portfolio UI.
+globs:
+  - "src/**/*.tsx"
+  - "src/**/*.ts"
+  - "src/**/*.css"
+  - "public/**/*.{tsx,svg}"
+  - "tailwind.config.*"
+alwaysApply: false
+---
+
+# No gradients
+
+Do not use gradients in this portfolio.
+
+Forbidden:
+
+- Tailwind `bg-gradient-*`, `from-*`, `via-*`, `to-*` used as a gradient fill
+- `bg-clip-text` with a gradient
+- CSS `linear-gradient`, `radial-gradient`, `conic-gradient`, `repeating-linear-gradient`
+- SVG `<linearGradient>` and `<radialGradient>`
+- Gradient mask/border tricks (`mask-image` with a gradient, `conic-gradient` borders)
+
+Use a single solid color from existing tokens or Tailwind palette instead.
+
+```tsx
+// ❌ BAD
+className="bg-gradient-to-r from-blue-500 to-purple-600"
+
+// ✅ GOOD
+className="bg-blue-600"
+```
+
+```css
+/* ❌ BAD */
+background: linear-gradient(135deg, #dff1ff, #fde3f2);
+
+/* ✅ GOOD */
+background: var(--ds-background-100);
+```
+
+Grid lines may use an SVG `<pattern>` with a solid stroke. Do not fake a grid with CSS gradients.

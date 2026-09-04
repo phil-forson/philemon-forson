@@ -1,0 +1,51 @@
+---
+description: Next.js App Router, React, and TypeScript conventions for application source files.
+globs:
+  - "src/**/*.ts"
+  - "src/**/*.tsx"
+  - "next.config.*"
+alwaysApply: false
+---
+
+# Next.js + React + TypeScript
+
+## Component boundaries
+
+- Default to Server Components for render-only/static UI.
+- Add `"use client"` only when a component needs state, effects, event handlers, browser APIs, client-only context, or a client library.
+- Keep the client boundary as low in the tree as practical.
+- Do not convert a large route/page to a Client Component to support one small browser behavior if that behavior can be isolated safely.
+
+## React
+
+- Prefer simple functional components and composition.
+- Avoid effects for values that can be derived during render.
+- Effects must clean up subscriptions, timers, or listeners they create.
+- Do not copy server/prop state into local state without a reason.
+- Use stable keys based on data identity, not array indexes when items can change.
+- Keep interaction state close to the interactive component.
+
+## TypeScript
+
+- Do not introduce `any`.
+- When touching existing `any`, narrow it if the change can do so safely.
+- Use `unknown` for caught/foreign values and narrow before property access.
+- Define reusable domain types for portfolio projects, guestbook entries, and shared data.
+- Prefer discriminated/string unions over unrestricted strings when a finite set exists.
+- Avoid unsafe casts used only to silence the compiler.
+- Keep types near their domain data unless a shared type module is clearly warranted.
+
+## Next.js
+
+- Use `next/link` for internal navigation.
+- Use `next/image` for raster content images when optimization is beneficial; do not force it for icons/SVGs without reason.
+- Use route/layout metadata APIs instead of ad-hoc document-head manipulation.
+- Keep metadata and structured content truthful and synchronized with the actual site.
+- Preserve App Router conventions.
+- Check framework compatibility before changing Next.js/React versions or config.
+
+## Data organization
+
+- Do not duplicate factual portfolio content across multiple components/pages.
+- Prefer one typed data source and derive featured/full views from it.
+- Keep display-only JSX/icons outside raw factual data when that improves reuse.

@@ -46,35 +46,6 @@ const Nav = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHomePage]);
 
-  const scrollToSection = (sectionId: string) => {
-    if (!isHomePage) {
-      window.location.href = "/";
-      return;
-    }
-
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const navHeight = 64; // Height of the navigation bar
-      const elementPosition = element.offsetTop - navHeight;
-
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const handleContactClick = () => {
-    if (isHomePage) {
-      // If on home page, scroll to contact section
-      scrollToSection("contact");
-    } else {
-      // If on guestbook page, navigate to home page and scroll to contact
-      window.location.href = "/#contact";
-    }
-  };
-
-  // Helper function to get active class
   const getActiveClass = (linkType: "page" | "section", value: string) => {
     if (linkType === "page") {
       return pathname === value ? "text-blue-500 font-semibold" : "";
@@ -82,6 +53,9 @@ const Nav = () => {
       return activeSection === value ? "text-blue-500 font-semibold" : "";
     }
   };
+
+  const navLinkClass = (active: string) =>
+    `hover:text-blue-500 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 rounded-sm ${active}`;
 
   return (
     <header className="header_main px-4 sticky top-0 flex justify-between items-center">
@@ -94,48 +68,38 @@ const Nav = () => {
         </p>
       </div>
       <div className="flex space-x-5 justify-around md:justify-start items-center text-sm w-full md:w-auto">
-        <button
-          onClick={() => scrollToSection("landing")}
-          className={`hover:text-blue-500 transition-colors cursor-pointer ${getActiveClass(
-            "section",
-            "landing"
-          )}`}
+        <Link
+          href={isHomePage ? "#landing" : "/"}
+          className={navLinkClass(getActiveClass("section", "landing"))}
+          aria-current={isHomePage && activeSection === "landing" ? "page" : undefined}
         >
           Home
-        </button>
+        </Link>
         <Link
           href="/about"
-          className={`hover:text-blue-500 transition-colors cursor-pointer ${getActiveClass(
-            "page",
-            "/about"
-          )}`}
+          className={navLinkClass(getActiveClass("page", "/about"))}
+          aria-current={pathname === "/about" ? "page" : undefined}
         >
           About
         </Link>
-        <button
-          onClick={handleContactClick}
-          className={`hover:text-blue-500 transition-colors cursor-pointer ${getActiveClass(
-            "section",
-            "contact"
-          )}`}
+        <Link
+          href={isHomePage ? "#contact" : "/#contact"}
+          className={navLinkClass(getActiveClass("section", "contact"))}
+          aria-current={isHomePage && activeSection === "contact" ? "page" : undefined}
         >
           Contact
-        </button>
+        </Link>
         <Link
           href="/projects"
-          className={`hover:text-blue-500 transition-colors cursor-pointer ${getActiveClass(
-            "page",
-            "/projects"
-          )}`}
+          className={navLinkClass(getActiveClass("page", "/projects"))}
+          aria-current={pathname === "/projects" ? "page" : undefined}
         >
           Projects
         </Link>
         <Link
           href="/guestbook"
-          className={`hover:text-blue-500 transition-colors cursor-pointer ${getActiveClass(
-            "page",
-            "/guestbook"
-          )}`}
+          className={navLinkClass(getActiveClass("page", "/guestbook"))}
+          aria-current={pathname === "/guestbook" ? "page" : undefined}
         >
           Guestbook
         </Link>

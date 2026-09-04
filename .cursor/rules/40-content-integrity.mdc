@@ -1,0 +1,21 @@
+---
+description: Protects truthfulness and consistency of portfolio content and personal claims.
+globs:
+  - "src/app/**/*.tsx"
+  - "src/components/**/*.tsx"
+  - "src/data/**/*"
+  - "src/content/**/*"
+  - "README.md"
+alwaysApply: false
+---
+
+# Portfolio content integrity
+
+- Never invent or infer personal accomplishments.
+- Do not create fake metrics such as percentages, revenue, user counts, performance improvements, or team sizes.
+- Do not change employment dates, employer names, job titles, education, project status, or technical claims unless repository evidence supports the change or the owner explicitly supplies the information.
+- Do not replace contact information because it looks unusual.
+- Improve grammar, clarity, scanning, and information hierarchy without altering factual meaning.
+- When consolidating duplicated project data, preserve the most complete repository-supported version and surface conflicts for review.
+- If a link is broken, do not silently substitute a guessed URL.
+- Placeholder images may be replaced only with real repository assets or owner-provided assets; do not invent project screenshots.

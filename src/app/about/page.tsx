@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "@/components/Nav/Nav";
 import Footer from "@/components/Footer/Footer";
+import { professionalExperience } from "@/data/experience";
 
 const About = () => {
   return (
@@ -50,7 +51,7 @@ const About = () => {
               <div className="pt-4">
                 <a
                   href="mailto:simplelogin-newsletter.contour409@simplelogin.com"
-                  className="inline-flex items-center gap-2 text-white hover:text-blue-400 transition-colors font-medium"
+                  className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 rounded-sm"
                 >
                   Get in touch
                   <svg
@@ -180,7 +181,7 @@ const About = () => {
           <div className="max-w-4xl mx-auto space-y-6">
             <div className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-lg p-8">
               <h3 className="text-xl font-semibold mb-2">
-                Master of Science, Business Analytics
+                Master of Science, Business Analytics & AI
               </h3>
               <a
                 href="https://www.utdallas.edu/"
@@ -191,7 +192,7 @@ const About = () => {
                 The University of Texas at Dallas
               </a>
               <p className="text-[var(--ds-gray-900)] mb-3">
-                Expected Graduation: 2026 • GPA: 4.0
+                Graduated: May 2026 • GPA: 4.0
               </p>
               <p className="text-sm mb-2">
                 Dean's Excellence Scholarship Recipient
@@ -259,98 +260,49 @@ const About = () => {
             Professional Experience
           </h2>
           <div className="max-w-4xl mx-auto space-y-6">
-            <div className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-lg p-8">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-xl font-semibold">Software Developer</h3>
-                  <a
-                    href="https://logicielghana.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:text-blue-700 transition-colors"
-                  >
-                    Logiciel Ghana Limited, Accra, Ghana
-                  </a>
+            {professionalExperience.map((job) => (
+              <div
+                key={`${job.company}-${job.dates}`}
+                className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-lg p-8"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">{job.title}</h3>
+                    {job.companyUrl ? (
+                      <a
+                        href={job.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 hover:text-blue-700 transition-colors"
+                      >
+                        {job.company}, {job.location}
+                      </a>
+                    ) : (
+                      <p className="text-[var(--ds-gray-900)]">
+                        {job.company}, {job.location}
+                      </p>
+                    )}
+                  </div>
+                  <span className="text-sm text-[var(--ds-gray-900)] flex-shrink-0 ml-4 text-right">
+                    {job.dates}
+                  </span>
                 </div>
-                <span className="text-sm text-[var(--ds-gray-900)]">
-                  November 2023 – January 2025
-                </span>
+                <ul className="space-y-2 text-sm">
+                  {job.highlights.map((highlight) => (
+                    <li key={highlight} className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>
-                    Engineered a scalable Clean Architecture framework, cutting
-                    onboarding time by 30% and code defects by 40%
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>
-                    Developed the project from Next.js 13 to Next.js 15 and
-                    implemented Turbopack, increasing local development speed by
-                    40%
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>
-                    Assessed frontend with Figma prototypes, reducing design
-                    rework by 25%
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-lg p-8">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-xl font-semibold">
-                    Software Developer Intern
-                  </h3>
-                  <a
-                    href="https://www.grundfos.com/gh"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:text-blue-700 transition-colors"
-                  >
-                    Grundfos, Accra, Ghana
-                  </a>
-                </div>
-                <span className="text-sm text-[var(--ds-gray-900)]">
-                  January 2022 – April 2023
-                </span>
-              </div>
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>
-                    Designed and built a ticket booking system with Angular,
-                    improving efficiency by 30% and lowering churn by 20%
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>
-                    Constructed scalable microservices with NestJS, reducing
-                    response times by 40%
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span>
-                    Analyzed raw data with Tableau, driving 25% faster
-                    performance and 15% higher user engagement
-                  </span>
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
         </section>
 
         {/* Call to Action */}
         <section className="text-center">
-          <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-8 text-white">
+          <div className="bg-blue-600 rounded-lg p-8 text-white">
             <h2 className="text-2xl font-semibold mb-4">
               Ready to Build Something Amazing?
             </h2>

@@ -49,14 +49,14 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="w-full h-auto lg:px-36 px-4 py-8 lg:py-16">
-      <div className="max-w-6xl mx-auto">
+    <section className="w-full py-8 lg:py-16">
+      <div>
         {/* Header */}
-        <div className="text-center mb-12 ">
+        <div className="mb-8">
           <h2 className="text-2xl lg:text-4xl font-semibold mb-4 tracking-[-0.98px]">
             Get In Touch
           </h2>
-          <p className="text-base md:text-lg text-[var(--ds-gray-900)] max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-[var(--ds-gray-900)] max-w-2xl">
             I'm always open to discussing new opportunities, interesting
             projects, or just having a chat about technology.
           </p>

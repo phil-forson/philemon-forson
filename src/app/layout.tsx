@@ -4,7 +4,7 @@ import "./globals.css";
 import Providers from "./providers";
 import localFont from "next/font/local";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Philemon Forson - Software Developer & Data Engineer",
@@ -61,6 +61,7 @@ bg-[rgba(var(--color-background))] text-[rgb(var(--color-foreground))] `}
       >
         <Providers>{children}</Providers>
         <ScrollToTop />
+        <Analytics />
       </body>
     </html>
   );

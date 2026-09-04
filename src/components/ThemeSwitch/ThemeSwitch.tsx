@@ -5,6 +5,9 @@ import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 
+const toggleClassName =
+  "p-2 rounded-md text-[var(--ds-gray-900)] hover:bg-[var(--ds-gray-100-value)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500";
+
 export default function ThemeSwitch() {
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
@@ -18,25 +21,22 @@ export default function ThemeSwitch() {
         width={36}
         height={36}
         sizes="36x36"
-        alt="Loading Light/Dark Toggle"
+        alt=""
+        aria-hidden="true"
         priority={false}
-        title="Loading Light/Dark Toggle"
       />
     );
 
-  if (resolvedTheme === "dark") {
-    return (
-      <div onClick={() => setTheme("light")} className="cursor-pointer">
-        <FiSun />
-      </div>
-    );
-  }
+  const isDark = resolvedTheme === "dark";
 
-  if (resolvedTheme === "light") {
-    return (
-      <div onClick={() => setTheme("dark")} className="cursor-pointer">
-        <FiMoon />
-      </div>
-    );
-  }
+  return (
+    <button
+      type="button"
+      className={toggleClassName}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+    >
+      {isDark ? <FiSun aria-hidden="true" /> : <FiMoon aria-hidden="true" />}
+    </button>
+  );
 }

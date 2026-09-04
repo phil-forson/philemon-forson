@@ -1,0 +1,52 @@
+---
+description: UI, responsive design, and accessibility standards for portfolio pages, components, and styles.
+globs:
+  - "src/app/**/*.tsx"
+  - "src/components/**/*.tsx"
+  - "src/**/*.css"
+  - "tailwind.config.*"
+alwaysApply: false
+---
+
+# UI and accessibility
+
+The visual goal is polished and professional, not flashy for its own sake.
+
+## Responsive behavior
+
+- Design mobile-first and verify common narrow widths before desktop polish.
+- Avoid fixed heights for content sections unless the content truly requires them.
+- Prevent horizontal overflow.
+- Keep touch targets comfortably usable.
+- Do not hide important content on mobile solely to simplify the layout.
+
+## Accessibility
+
+- Use semantic HTML elements and meaningful heading order.
+- Interactive controls must be keyboard reachable and operable.
+- Never use a `div` or `span` as a button when a native button/link is appropriate.
+- Preserve visible `:focus-visible` states.
+- Every meaningful image needs useful alt text; decorative images should be marked decorative.
+- Icon-only controls require an accessible name.
+- Form inputs require labels and clear error states.
+- Do not rely on color alone to communicate state.
+- Maintain readable contrast in both light and dark themes.
+- Respect `prefers-reduced-motion`; motion must not be required to understand content.
+
+## Portfolio UX
+
+- The hero should communicate identity, specialization, and a clear next action quickly.
+- Prioritize a small number of strong projects over visual clutter.
+- Project presentation should favor evidence: problem, contribution, stack, and outcome where repository-supported.
+- Never invent metrics or outcomes to make a project card sound stronger.
+- Keep navigation labels predictable.
+- Use restrained transitions and hover effects.
+- Avoid generic template aesthetics when existing content can produce a more personal, focused design.
+
+## Styling
+
+- Prefer existing Tailwind tokens/design variables before introducing one-off hardcoded values.
+- Keep spacing and typography scales consistent.
+- Reuse components for repeated UI patterns.
+- Avoid giant class strings when extracting a small component materially improves readability.
+- Never use CSS, Tailwind, or SVG gradients. Use a single solid color.

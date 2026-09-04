@@ -1,0 +1,18 @@
+---
+description: Core repository behavior for all work on the Philemon Forson portfolio.
+alwaysApply: true
+---
+
+# Core project rule
+
+- Read `AGENTS.md` and relevant nearby files before making meaningful changes.
+- Make the smallest coherent change that solves the identified problem.
+- Do not fabricate portfolio facts, project outcomes, employers, dates, skills, URLs, metrics, or contact details.
+- Preserve existing working behavior unless the task explicitly changes it.
+- Never use CSS, Tailwind, or SVG gradients; use a single solid color.
+- Never bypass TypeScript, security rules, build checks, authentication, or validation to make a task appear complete.
+- Avoid new dependencies unless there is a concrete need and a clear benefit over the existing stack.
+- Do not perform unrelated cleanup in the same change.
+- Prefer evidence from the repository over assumptions.
+- If facts are uncertain, flag them for the owner rather than rewriting them.
+- Before completion, review the diff and report verification actually performed.

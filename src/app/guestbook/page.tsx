@@ -15,8 +15,12 @@ import {
 import Nav from "@/components/Nav/Nav";
 import Footer from "@/components/Footer/Footer";
 import { useAuth } from "@/contexts/AuthContext";
-import { guestbookService, GuestbookEntry } from "@/services/guestbookService";
-import { testFirebaseConnection } from "@/lib/firebase-test";
+import {
+  guestbookService,
+  GuestbookEntry,
+  GUESTBOOK_MESSAGE_MAX_LENGTH,
+} from "@/services/guestbookService";
+import type { Timestamp } from "firebase/firestore";
 
 const Guestbook = () => {
   const {
@@ -36,7 +40,6 @@ const Guestbook = () => {
   const [editForm, setEditForm] = useState({ message: "" });
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
-  const [connectionTest, setConnectionTest] = useState<any>(null);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
   const [notificationType, setNotificationType] = useState<
@@ -45,6 +48,7 @@ const Guestbook = () => {
   const [expandedMessages, setExpandedMessages] = useState<Set<string>>(
     new Set()
   );
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const showNotificationMessage = (
     message: string,
@@ -60,28 +64,16 @@ const Guestbook = () => {
     }, 5000);
   };
 
-  // Test Firebase connection on component mount
-  useEffect(() => {
-    const runConnectionTest = async () => {
-      const result = await testFirebaseConnection();
-      setConnectionTest(result);
-    };
-    runConnectionTest();
-  }, []);
-
   // Load entries from Firestore
   useEffect(() => {
     const loadEntries = async () => {
       try {
         setIsLoading(true);
         setError(null);
-        console.log("Loading entries...");
         const messages = await guestbookService.getMessages();
-        console.log("Loaded messages:", messages);
         setEntries(messages);
-      } catch (error) {
-        console.error("Error loading messages:", error);
-        setError(`Failed to load messages: ${(error as Error).message}`);
+      } catch {
+        setError("Failed to load messages. Please try again.");
       } finally {
         setIsLoading(false);
       }
@@ -89,6 +81,28 @@ const Guestbook = () => {
 
     loadEntries();
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    if (!user) {
+      setIsAdmin(false);
+      return;
+    }
+
+    const loadAdminStatus = async () => {
+      const admin = await guestbookService.isCurrentUserAdmin();
+      if (!cancelled) {
+        setIsAdmin(admin);
+      }
+    };
+
+    void loadAdminStatus();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,21 +113,7 @@ const Guestbook = () => {
     setSuccess(null);
 
     try {
-      console.log("Submitting message with user:", user);
-
-      const messageData = {
-        name: user.displayName || user.email?.split("@")[0] || "Anonymous",
-        message: newEntry.message.trim(),
-        userId: user.uid,
-        userEmail: user.email || "",
-        userPhotoURL: user.photoURL || undefined,
-        likes: 0,
-      };
-
-      console.log("Message data:", messageData);
-
-      const messageId = await guestbookService.addMessage(messageData);
-      console.log("Message added with ID:", messageId);
+      await guestbookService.addMessage(newEntry.message);
 
       // Reload messages
       const messages = await guestbookService.getMessages();
@@ -125,11 +125,10 @@ const Guestbook = () => {
 
       // Clear success message after 3 seconds
       setTimeout(() => setSuccess(null), 3000);
-    } catch (error) {
-      console.error("Error adding message:", error);
-      setError(`Failed to post message: ${(error as Error).message}`);
+    } catch {
+      setError("Failed to post message. Please try again.");
       showNotificationMessage(
-        `Failed to post message: ${(error as Error).message}`,
+        "Failed to post message. Please try again.",
         "error"
       );
     } finally {
@@ -140,9 +139,9 @@ const Guestbook = () => {
   const handleDelete = async (id: string) => {
     if (!user) return;
 
-    // Only allow users to delete their own messages
-    const entry = entries.find((e) => e.id === id);
-    if (entry && entry.userId !== user.uid) {
+    const entry = entries.find((item) => item.id === id);
+    const ownsEntry = entry?.userId === user.uid;
+    if (!ownsEntry && !isAdmin) {
       alert("You can only delete your own messages.");
       return;
     }
@@ -151,8 +150,11 @@ const Guestbook = () => {
       try {
         await guestbookService.deleteMessage(id);
         setEntries(entries.filter((entry) => entry.id !== id));
-      } catch (error) {
-        console.error("Error deleting message:", error);
+      } catch {
+        showNotificationMessage(
+          "Failed to delete message. Please try again.",
+          "error"
+        );
       }
     }
   };
@@ -169,25 +171,32 @@ const Guestbook = () => {
 
   const handleEditSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!editForm.message.trim()) return;
+    if (!user || !editingId || !editForm.message.trim()) return;
+
+    const entry = entries.find((item) => item.id === editingId);
+    if (!entry || entry.userId !== user.uid) {
+      alert("You can only edit your own messages.");
+      return;
+    }
 
     try {
-      await guestbookService.updateMessage(editingId!, {
-        message: editForm.message.trim(),
-      });
+      await guestbookService.updateMessage(editingId, editForm.message);
 
       setEntries(
-        entries.map((entry) =>
-          entry.id === editingId
-            ? { ...entry, message: editForm.message.trim() }
-            : entry
+        entries.map((item) =>
+          item.id === editingId
+            ? { ...item, message: editForm.message.trim() }
+            : item
         )
       );
 
       setEditingId(null);
       setEditForm({ message: "" });
-    } catch (error) {
-      console.error("Error updating message:", error);
+    } catch {
+      showNotificationMessage(
+        "Failed to update message. Please try again.",
+        "error"
+      );
     }
   };
 
@@ -213,21 +222,20 @@ const Guestbook = () => {
     return message.substring(0, maxLength).trim() + "...";
   };
 
-  const formatDate = (timestamp: any) => {
+  const formatDate = (timestamp: Timestamp | null) => {
     if (!timestamp) return "Just now";
 
-    const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
-    return date.toLocaleDateString("en-US", {
+    return timestamp.toDate().toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
     });
   };
 
-  const formatRelativeTime = (timestamp: any) => {
+  const formatRelativeTime = (timestamp: Timestamp | null) => {
     if (!timestamp) return "Just now";
 
-    const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+    const date = timestamp.toDate();
     const now = new Date();
     const diff = now.getTime() - date.getTime();
     const seconds = Math.floor(diff / 1000);
@@ -400,8 +408,7 @@ const Guestbook = () => {
                     )}
                     <div className="min-w-0 flex-1">
                       <h3 className="font-semibold text-sm sm:text-base truncate">
-                        Welcome, {user.displayName || user.email?.split("@")[0]}
-                        !
+                        Welcome{user.displayName ? `, ${user.displayName}` : ""}!
                       </h3>
                       <p className="text-xs text-[var(--ds-gray-600)] truncate">
                         {user.email}
@@ -463,11 +470,11 @@ const Guestbook = () => {
                       className="w-full px-4 py-3 border-[1.5px] border-[var(--ds-gray-200-value)] rounded-xl bg-[rgba(var(--color-background))] focus:outline-none focus:ring-blue-500 focus:border-blue-500 resize-none transition-all duration-200 text-[var(--ds-gray-900)] placeholder-[var(--ds-gray-500)]"
                       placeholder="Share your thoughts, ideas, or just say hello..."
                       required
-                      maxLength={500}
+                      maxLength={GUESTBOOK_MESSAGE_MAX_LENGTH}
                     />
                     <div className="flex justify-between items-center text-sm text-[var(--ds-gray-500)] mt-2">
                       <span className="text-xs font-medium">
-                        {newEntry.message.length}/500
+                        {newEntry.message.length}/{GUESTBOOK_MESSAGE_MAX_LENGTH}
                       </span>
                     </div>
                   </div>
@@ -475,7 +482,7 @@ const Guestbook = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting || !newEntry.message.trim()}
-                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+                    className="w-full bg-blue-600 text-white py-3 px-6 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
                   >
                     {isSubmitting ? (
                       <>
@@ -541,7 +548,7 @@ const Guestbook = () => {
                           rows={3}
                           className="w-full px-3 py-2 border border-[var(--ds-gray-200-value)] rounded-lg bg-[rgba(var(--color-background))] focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
                           required
-                          maxLength={500}
+                          maxLength={GUESTBOOK_MESSAGE_MAX_LENGTH}
                         />
                       </div>
                       <div className="flex gap-2">
@@ -572,7 +579,7 @@ const Guestbook = () => {
                               className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-[var(--ds-gray-100-value)] shadow-sm"
                             />
                           ) : (
-                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-sm">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-sm">
                               <FaUser className="text-white text-sm sm:text-base" />
                             </div>
                           )}
@@ -594,22 +601,26 @@ const Guestbook = () => {
 
                         <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
                           {user && entry.userId === user.uid && (
-                            <>
-                              <button
-                                onClick={() => handleEdit(entry)}
-                                className="text-blue-500 hover:text-blue-700 transition-colors p-1.5 sm:p-2 rounded-lg hover:bg-blue-50"
-                                title="Edit message"
-                              >
-                                <FaEdit className="text-xs sm:text-sm" />
-                              </button>
-                              <button
-                                onClick={() => handleDelete(entry.id)}
-                                className="text-red-500 hover:text-red-700 transition-colors p-1.5 sm:p-2 rounded-lg hover:bg-red-50"
-                                title="Delete message"
-                              >
-                                <FaTrash className="text-xs sm:text-sm" />
-                              </button>
-                            </>
+                            <button
+                              type="button"
+                              onClick={() => handleEdit(entry)}
+                              className="text-blue-500 hover:text-blue-700 transition-colors p-1.5 sm:p-2 rounded-lg hover:bg-blue-50"
+                              title="Edit message"
+                              aria-label="Edit message"
+                            >
+                              <FaEdit className="text-xs sm:text-sm" />
+                            </button>
+                          )}
+                          {user && (entry.userId === user.uid || isAdmin) && (
+                            <button
+                              type="button"
+                              onClick={() => handleDelete(entry.id)}
+                              className="text-red-500 hover:text-red-700 transition-colors p-1.5 sm:p-2 rounded-lg hover:bg-red-50"
+                              title="Delete message"
+                              aria-label="Delete message"
+                            >
+                              <FaTrash className="text-xs sm:text-sm" />
+                            </button>
                           )}
                         </div>
                       </div>

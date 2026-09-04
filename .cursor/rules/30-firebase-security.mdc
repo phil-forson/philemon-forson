@@ -1,0 +1,53 @@
+---
+description: Firebase Auth, Firestore, and guestbook security rules.
+globs:
+  - "firestore.rules"
+  - "firestore.indexes.json"
+  - "firebase.json"
+  - "src/lib/firebase.ts"
+  - "src/lib/firebase-test.ts"
+  - "src/contexts/**/*.tsx"
+  - "src/services/**/*.ts"
+  - "src/app/guestbook/**/*"
+alwaysApply: false
+---
+
+# Firebase and guestbook security
+
+Security is enforced server-side by Firestore rules, not by UI visibility.
+
+## Firestore rules
+
+- Never use unrestricted recursive `allow read, write: if true` rules for production data.
+- Start from deny-by-default and grant only the operations the product requires.
+- Public read access may be acceptable for a public guestbook, but write permissions must be explicit.
+- If users can edit/delete their own messages, enforce ownership using authenticated `request.auth.uid` and immutable ownership fields.
+- Validate allowed fields and field types where practical.
+- Prevent a client from changing author identity fields to impersonate another user.
+- Treat counters such as `likes` as abuse-sensitive; validate allowed deltas/behavior or redesign the write path.
+- Keep rule changes synchronized with actual client behavior.
+- Do not deploy restrictive rules without checking that legitimate guestbook flows still work.
+
+## Firebase client configuration
+
+- Firebase web client configuration values are identifiers, not a substitute for security.
+- Do not rely on hiding the Firebase web config for protection.
+- Real authorization must be implemented in Firebase Auth/Firestore rules.
+- Do not add service-account keys, private keys, admin credentials, or server secrets to client code.
+
+## Auth
+
+- Keep OAuth provider flows explicit.
+- Use typed Firebase errors or `unknown` with narrowing instead of `any`.
+- Do not leak sensitive internal error details to users.
+- Account linking must preserve user intent and avoid accidental account takeover behavior.
+- Clean up auth subscriptions.
+
+## Guestbook data
+
+- Validate/sanitize user-controlled text at the appropriate layers.
+- Bound message/name length.
+- Do not render user-controlled HTML.
+- Require authorization for destructive operations.
+- Handle loading, empty, error, and permission-denied states.
+- Remove verbose production logging that exposes unnecessary user data.

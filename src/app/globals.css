@@ -40,9 +40,6 @@
     --ds-gray-alpha-200: rgba(0, 0, 0, 0.08);
     --ds-gray-alpha-300: rgba(0, 0, 0, 0.1);
     --ds-gray-alpha-400: rgba(0, 0, 0, 0.08);
-    --classic-card-border: from 180deg at 50% 50%, #ffcade 0deg,
-      #e9d3ff 88.12deg, #c8ddff 176.25deg, #e9d3ff 264.38deg, #ffcade 1turn;
-    --gradient-bg: 135deg, #dff1ff 0%, #fde3f2 100%;
     --window-card-diff: 48px;
     --send-bg: #0B93F6;
     --send-color: white;
@@ -84,11 +81,6 @@
     --ds-gray-alpha-300: hsla(0, 0%, 100%, 0.13);
     --ds-gray-alpha-400: hsla(0, 0%, 100%, 0.14);
     --ds-gray-900: hsla(0, 0%, 63%, 1);
-
-    --classic-card-border: from 180deg at 50% 50%, #ffcade40 0deg,
-      #e9d3ff40 88.12deg, #c8ddff40 176.25deg, #e9d3ff40 264.38deg,
-      #ffcade40 1turn;
-    --gradient-bg: 180deg, #0d0e13 0%, #161725 50%, #1c1d2e 100%;
     --receive-color: white;
     --receive-text: white;
     --receive-bg: var(--ds-gray-100-value);
@@ -267,43 +259,6 @@ body {
   transform: translateX(-50%);
 }
 
-.grid-background {
-  background-image: linear-gradient(
-      to right,
-      var(--ds-gray-200-value) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, var(--ds-gray-200-value) 1px, transparent 1px);
-  background-size: calc(100% / var(--grid-cols-num))
-    calc(100% / var(--grid-rows-num));
-}
-
-.gradient-border {
-  margin: 0 auto;
-  width: auto;
-  background-color: transparent !important;
-  position: relative;
-}
-
-.gradient-border::after,
-.gradient-border::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  /* background-image: conic-gradient(#ff4545, #00ff99, #006aff, #ff0095, #ff4545); */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  border-radius: inherit;
-  padding: 3px;
-}
-
-.gradient-border::before {
-  filter: blur(1.5rem);
-}
-
 .card {
   margin: 0 auto;
   padding: 2em;
@@ -312,69 +267,13 @@ body {
   text-align: center;
   border-radius: 10px;
   position: relative;
+  border: 1px solid var(--ds-gray-200-value);
 }
 
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-.card::after,
-.card::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-image: conic-gradient(
-    from var(--angle),
-    #ff4545,
-    #00ff99,
-    #006aff,
-    #ff0095,
-    #ff4545
-  );
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  z-index: -1;
-  padding: 3px;
-  border-radius: 10px;
-  animation: 3s spin linear infinite;
-}
-.card::before {
-  filter: blur(1.5rem);
-  opacity: 0.5;
-}
-@keyframes spin {
-  from {
-    --angle: 0deg;
-  }
-  to {
-    --angle: 360deg;
-  }
-}
-
-/* Keyframes for Gradient Animation */
-
-.classic-card:before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  border: 1px solid #0000;
+.classic-card {
+  position: relative;
+  border: 1px solid var(--ds-gray-200-value);
   border-radius: 12px;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  background: conic-gradient(var(--classic-card-border));
-}
-
-.bg-gradient-background {
-  background: linear-gradient(var(--gradient-bg));
 }
 
 .bullet-pt::before {
@@ -397,7 +296,6 @@ body {
 }
 
 .domains_div {
-  mask-image: linear-gradient(0deg, transparent, #000 30px);
   width: 100%;
   padding: 1px 1px 0;
 }
@@ -504,17 +402,6 @@ body {
   transition: all 0.2s ease;
 }
 
-/* Featured badge styling */
-.bg-gradient-to-r {
-  background-size: 200% 200%;
-  animation: gradientShift 3s ease infinite;
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
 /* Custom breathing animation for globe grid lines */
 @keyframes pulseOpacity {
   0% { opacity: 0.2; }
@@ -617,4 +504,25 @@ body {
 
 .breathing-line-stroke {
   animation: pulseStrokeWidth 4.5s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-float-left,
+  .animate-float-right,
+  .animate-spin-slow,
+  .breathing-line,
+  .breathing-line-stroke {
+    animation: none;
+  }
+}
+
+#landing,
+#experience,
+#projects,
+#contact {
+  scroll-margin-top: 5rem;
 }

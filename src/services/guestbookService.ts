@@ -2,132 +2,155 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
   deleteDoc,
   updateDoc,
   doc,
   query,
-  orderBy,
-  limit,
   serverTimestamp,
+  Timestamp,
+  type FieldValue,
+  type QueryDocumentSnapshot,
 } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
+
+export const GUESTBOOK_MESSAGE_MAX_LENGTH = 500;
+export const GUESTBOOK_NAME_MAX_LENGTH = 80;
+const GUESTBOOK_PHOTO_MAX_LENGTH = 2048;
 
 export interface GuestbookEntry {
   id: string;
   name: string;
   message: string;
   userId: string;
-  userEmail: string;
   userPhotoURL?: string;
   likes: number;
-  createdAt: any;
-  updatedAt: any;
+  createdAt: Timestamp | null;
+  updatedAt: Timestamp | null;
+}
+
+function requireSignedInUser() {
+  const user = auth.currentUser;
+  if (!user) {
+    throw new Error("You must be signed in to do that.");
+  }
+  return user;
+}
+
+function normalizeMessage(message: string): string {
+  const trimmed = message.trim();
+  if (trimmed.length < 1 || trimmed.length > GUESTBOOK_MESSAGE_MAX_LENGTH) {
+    throw new Error(
+      `Message must be between 1 and ${GUESTBOOK_MESSAGE_MAX_LENGTH} characters.`
+    );
+  }
+  return trimmed;
+}
+
+function toTimestamp(value: unknown): Timestamp | null {
+  return value instanceof Timestamp ? value : null;
+}
+
+function timestampMillis(value: Timestamp | null): number {
+  return value ? value.toMillis() : 0;
+}
+
+function mapEntry(snapshot: QueryDocumentSnapshot): GuestbookEntry {
+  const data = snapshot.data();
+  return {
+    id: snapshot.id,
+    name: typeof data.name === "string" ? data.name : "Anonymous",
+    message: typeof data.message === "string" ? data.message : "",
+    userId: typeof data.userId === "string" ? data.userId : "",
+    userPhotoURL:
+      typeof data.userPhotoURL === "string" ? data.userPhotoURL : undefined,
+    likes: typeof data.likes === "number" ? data.likes : 0,
+    createdAt: toTimestamp(data.createdAt),
+    updatedAt: toTimestamp(data.updatedAt),
+  };
 }
 
 export const guestbookService = {
-  // Add a new message
-  async addMessage(
-    message: Omit<GuestbookEntry, "id" | "createdAt" | "updatedAt">
-  ): Promise<string> {
-    try {
-      console.log("Attempting to add message:", message);
+  async addMessage(message: string): Promise<string> {
+    const user = requireSignedInUser();
+    const normalizedMessage = normalizeMessage(message);
+    const name = (user.displayName || "Anonymous").slice(
+      0,
+      GUESTBOOK_NAME_MAX_LENGTH
+    );
 
-      const docRef = await addDoc(collection(db, "guestbook"), {
-        ...message,
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
-      });
-
-      console.log("Message added successfully with ID:", docRef.id);
-      return docRef.id;
-    } catch (error) {
-      console.error("Error adding message:", error);
-      console.error("Error details:", {
-        code: (error as any)?.code,
-        message: (error as any)?.message,
-        stack: (error as any)?.stack,
-      });
-      throw error;
+    if (name.length < 1) {
+      throw new Error("A display name is required to post a message.");
     }
+
+    const payload: {
+      name: string;
+      message: string;
+      userId: string;
+      userPhotoURL?: string;
+      likes: number;
+      createdAt: FieldValue;
+      updatedAt: FieldValue;
+    } = {
+      name,
+      message: normalizedMessage,
+      userId: user.uid,
+      likes: 0,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+    };
+
+    if (
+      user.photoURL &&
+      user.photoURL.length > 0 &&
+      user.photoURL.length <= GUESTBOOK_PHOTO_MAX_LENGTH
+    ) {
+      payload.userPhotoURL = user.photoURL;
+    }
+
+    const docRef = await addDoc(collection(db, "guestbook"), payload);
+    return docRef.id;
   },
 
-  // Get all messages
   async getMessages(limitCount: number = 50): Promise<GuestbookEntry[]> {
+    const querySnapshot = await getDocs(query(collection(db, "guestbook")));
+    const messages = querySnapshot.docs.map(mapEntry);
+
+    return messages
+      .sort((a, b) => timestampMillis(b.createdAt) - timestampMillis(a.createdAt))
+      .slice(0, limitCount);
+  },
+
+  async isCurrentUserAdmin(): Promise<boolean> {
+    const user = auth.currentUser;
+    if (!user) {
+      return false;
+    }
+
     try {
-      console.log("Attempting to get messages...");
+      const snapshot = await getDoc(doc(db, "siteConfig", "admins"));
+      if (!snapshot.exists()) {
+        return false;
+      }
 
-      // Try a simpler query first without ordering
-      const q = query(collection(db, "guestbook"));
-      const querySnapshot = await getDocs(q);
-
-      const messages = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as GuestbookEntry[];
-
-      // Sort messages by createdAt timestamp if available
-      const sortedMessages = messages.sort((a, b) => {
-        const aTime =
-          a.createdAt?.toDate?.() || new Date(a.createdAt) || new Date(0);
-        const bTime =
-          b.createdAt?.toDate?.() || new Date(b.createdAt) || new Date(0);
-        return bTime.getTime() - aTime.getTime();
-      });
-
-      console.log(
-        "Messages retrieved successfully:",
-        sortedMessages.length,
-        "messages"
-      );
-      return sortedMessages.slice(0, limitCount);
-    } catch (error) {
-      console.error("Error getting messages:", error);
-      console.error("Error details:", {
-        code: (error as any)?.code,
-        message: (error as any)?.message,
-        stack: (error as any)?.stack,
-      });
-      throw error;
+      const uids = snapshot.data().uids;
+      return Array.isArray(uids) && uids.includes(user.uid);
+    } catch {
+      return false;
     }
   },
 
-  // Delete a message
   async deleteMessage(messageId: string): Promise<void> {
-    try {
-      console.log("Attempting to delete message:", messageId);
-      await deleteDoc(doc(db, "guestbook", messageId));
-      console.log("Message deleted successfully");
-    } catch (error) {
-      console.error("Error deleting message:", error);
-      console.error("Error details:", {
-        code: (error as any)?.code,
-        message: (error as any)?.message,
-        stack: (error as any)?.stack,
-      });
-      throw error;
-    }
+    requireSignedInUser();
+    await deleteDoc(doc(db, "guestbook", messageId));
   },
 
-  // Update a message
-  async updateMessage(
-    messageId: string,
-    updates: Partial<GuestbookEntry>
-  ): Promise<void> {
-    try {
-      console.log("Attempting to update message:", messageId, updates);
-      await updateDoc(doc(db, "guestbook", messageId), {
-        ...updates,
-        updatedAt: serverTimestamp(),
-      });
-      console.log("Message updated successfully");
-    } catch (error) {
-      console.error("Error updating message:", error);
-      console.error("Error details:", {
-        code: (error as any)?.code,
-        message: (error as any)?.message,
-        stack: (error as any)?.stack,
-      });
-      throw error;
-    }
+  async updateMessage(messageId: string, message: string): Promise<void> {
+    requireSignedInUser();
+    const normalizedMessage = normalizeMessage(message);
+    await updateDoc(doc(db, "guestbook", messageId), {
+      message: normalizedMessage,
+      updatedAt: serverTimestamp(),
+    });
   },
 };
