@@ -3,45 +3,54 @@ import {
   FaGithub,
   FaExternalLinkAlt,
   FaCode,
-  FaLaptop,
-  FaMobile,
   FaBrain,
   FaServer,
   FaDesktop,
+  FaMobile,
+  FaEye,
+  FaRobot,
+  FaChartBar,
 } from "react-icons/fa";
 import type { Project, ProjectCategory } from "@/data/projects";
+import { getPrimaryCategory } from "@/data/projects";
 
 const getCategoryIcon = (category: ProjectCategory) => {
   switch (category) {
     case "Full-Stack":
       return <FaCode className="text-blue-500" aria-hidden="true" />;
-    case "Frontend":
-      return <FaLaptop className="text-green-500" aria-hidden="true" />;
     case "Backend":
       return <FaServer className="text-purple-500" aria-hidden="true" />;
-    case "Mobile":
-      return <FaMobile className="text-orange-500" aria-hidden="true" />;
-    case "Machine Learning":
+    case "AI / ML":
       return <FaBrain className="text-red-500" aria-hidden="true" />;
+    case "Computer Vision":
+      return <FaEye className="text-teal-500" aria-hidden="true" />;
+    case "GenAI / RAG":
+      return <FaRobot className="text-indigo-500" aria-hidden="true" />;
+    case "Data Science":
+      return <FaChartBar className="text-green-500" aria-hidden="true" />;
     case "Desktop":
       return <FaDesktop className="text-gray-500" aria-hidden="true" />;
+    case "Mobile":
+      return <FaMobile className="text-orange-500" aria-hidden="true" />;
     default:
       return <FaCode className="text-gray-500" aria-hidden="true" />;
   }
 };
 
 const ProjectCard = ({ project }: { project: Project }) => {
+  const primaryCategory = getPrimaryCategory(project);
+
   return (
     <article className="bg-[rgba(var(--color-background))] border border-[var(--ds-gray-200-value)] rounded-xl p-6 flex flex-col">
       <div className="flex items-start mb-4">
         <div className="flex items-center gap-3">
-          {getCategoryIcon(project.category)}
+          {getCategoryIcon(primaryCategory)}
           <div>
             <h3 className="font-bold text-lg text-[var(--ds-gray-900)]">
               {project.title}
             </h3>
             <p className="text-sm text-[var(--ds-gray-600)]">
-              {project.category}
+              {primaryCategory}
               {project.status ? ` · ${project.status}` : ""}
             </p>
           </div>

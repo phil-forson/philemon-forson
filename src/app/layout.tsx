@@ -1,40 +1,66 @@
 import type { Metadata } from "next";
-// import { inter } from "@/app/ui/fonts";
 import "./globals.css";
 import Providers from "./providers";
 import localFont from "next/font/local";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import { Analytics } from "@vercel/analytics/next";
+import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
-  title: "Philemon Forson - Software Developer & Data Engineer",
-  description:
-    "Portfolio of Philemon Forson, a passionate Software Developer and Data Engineer specializing in building scalable applications, data-driven solutions, and machine learning applications.",
+  title: {
+    default: profile.seoTitle,
+    template: `%s — ${profile.name}`,
+  },
+  description: profile.seoDescription,
   keywords: [
-    "Software Developer",
+    "AI/ML Engineer",
+    "Data Scientist",
+    "Software Engineer",
     "Data Engineer",
-    "Full Stack Developer",
+    "Computer Vision",
     "Machine Learning",
-    "React",
-    "Next.js",
+    "Generative AI",
     "Python",
-    "Portfolio",
+    "Philemon Forson",
   ],
-  authors: [{ name: "Philemon Forson" }],
-  creator: "Philemon Forson",
+  authors: [{ name: profile.name }],
+  creator: profile.name,
   openGraph: {
-    title: "Philemon Forson - Software Developer & Data Engineer",
-    description:
-      "Portfolio showcasing software development and data engineering projects",
+    title: profile.seoTitle,
+    description: profile.seoDescription,
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Philemon Forson - Software Developer & Data Engineer",
-    description:
-      "Portfolio showcasing software development and data engineering projects",
+    title: profile.seoTitle,
+    description: profile.seoDescription,
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.title,
+  email: profile.email,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Dallas",
+    addressRegion: "TX",
+    addressCountry: "US",
+  },
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "The University of Texas at Dallas",
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      name: "University of Ghana",
+    },
+  ],
+  sameAs: [profile.githubUrl, profile.linkedinUrl],
 };
 
 const geistSans = localFont({
@@ -59,6 +85,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased
 bg-[rgba(var(--color-background))] text-[rgb(var(--color-foreground))] `}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Providers>{children}</Providers>
         <ScrollToTop />
         <Analytics />

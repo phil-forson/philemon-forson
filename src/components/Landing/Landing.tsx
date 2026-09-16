@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 import Button from "@/components/Button/Button";
+import { mailtoHref, profile } from "@/data/profile";
 
 const focusClass =
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 rounded-sm";
@@ -10,14 +11,16 @@ const Landing = () => {
     <div className="flex h-full flex-col justify-between gap-10">
       <div>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-[-0.98px] text-[var(--receive-text)]">
-          Philemon Forson
+          {profile.name}
         </h1>
         <p className="mt-3 text-lg font-semibold text-[rgb(var(--color-foreground))]">
-          Full-Stack Developer & Data Engineer
+          {profile.title}
         </p>
         <p className="mt-3 text-sm text-[var(--ds-gray-900)]">
-          M.S. Business Analytics & AI, The University of Texas at Dallas.
-          Based in Dallas.
+          {profile.educationLine}
+        </p>
+        <p className="mt-3 text-sm text-[var(--ds-gray-900)] leading-relaxed max-w-md">
+          {profile.supportingLine}
         </p>
 
         <nav aria-label="Page sections" className="mt-8">
@@ -74,7 +77,7 @@ const Landing = () => {
       <ul className="flex gap-4 items-center">
         <li>
           <a
-            href="https://github.com/phil-forson"
+            href={profile.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -85,7 +88,7 @@ const Landing = () => {
         </li>
         <li>
           <a
-            href="https://www.linkedin.com/in/forson-philemon/"
+            href={profile.linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -96,7 +99,7 @@ const Landing = () => {
         </li>
         <li>
           <a
-            href="mailto:simplelogin-newsletter.contour409@simplelogin.com"
+            href={mailtoHref}
             aria-label="Email"
             className={`text-[var(--ds-gray-900)] hover:text-blue-500 transition-colors ${focusClass} inline-flex p-2`}
           >

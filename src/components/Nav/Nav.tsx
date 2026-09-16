@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import Link from "next/link";
+import { profile } from "@/data/profile";
 
 const Nav = () => {
   const pathname = usePathname();
@@ -20,7 +21,6 @@ const Nav = () => {
     for (const sectionId of sections) {
       const element = document.getElementById(sectionId);
       if (element) {
-        const rect = element.getBoundingClientRect();
         const offsetTop = element.offsetTop - navHeight - 12;
         const offsetBottom = offsetTop + element.offsetHeight + 12;
 
@@ -60,11 +60,11 @@ const Nav = () => {
   return (
     <header className="header_main px-4 sticky top-0 flex justify-between items-center">
       <div className=" gap-2 items-center hidden md:flex">
-        <Link href="/" className="text-sm">
-          Philemon Forson
+        <Link href="/" className={`text-sm ${navLinkClass("")}`}>
+          {profile.name}
         </Link>
         <p className="px-2 py-1 text-xs bg-[var(--muted)] rounded-md">
-          Software Developer And Data Engineer
+          {profile.title}
         </p>
       </div>
       <div className="flex space-x-5 justify-around md:justify-start items-center text-sm w-full md:w-auto">

@@ -1,25 +1,19 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  FaCode,
-  FaMobile,
-  FaBrain,
-  FaServer,
-} from "react-icons/fa";
+import { FaCode, FaBrain, FaServer, FaEye } from "react-icons/fa";
 import Nav from "@/components/Nav/Nav";
 import Footer from "@/components/Footer/Footer";
 import ProjectCard from "@/components/Projects/ProjectCard";
-import { PROJECT_CATEGORIES, projects } from "@/data/projects";
+import { PROJECT_CATEGORIES, projectMatchesCategory, projects } from "@/data/projects";
 
 const ProjectsPage = () => {
   const [activeFilter, setActiveFilter] =
     useState<(typeof PROJECT_CATEGORIES)[number]>("All");
 
-  const filteredProjects =
-    activeFilter === "All"
-      ? projects
-      : projects.filter((project) => project.category === activeFilter);
+  const filteredProjects = projects.filter((project) =>
+    projectMatchesCategory(project, activeFilter)
+  );
 
   return (
     <div className="font-[family-name:var(--font-geist-sans)]">
@@ -27,11 +21,12 @@ const ProjectsPage = () => {
       <section className="text-center pt-16 px-4 lg:px-36">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-blue-600">
-            My Projects
+            Projects
           </h1>
           <p className="text-lg text-[var(--ds-gray-900)] max-w-2xl mx-auto leading-relaxed">
-            Full-stack, backend, desktop, mobile, and machine learning work.
-            Featured pieces are on the home page; everything else lives here.
+            Computer vision, predictive modeling, generative AI, and full-stack
+            systems. Featured work is on the home page; the full list lives
+            here.
           </p>
         </div>
       </section>
@@ -81,57 +76,69 @@ const ProjectsPage = () => {
               Technologies I Work With
             </h2>
             <p className="text-[var(--ds-gray-900)] max-w-2xl mx-auto">
-              My projects span across various technologies and frameworks,
-              demonstrating versatility in full-stack development.
+              AI/ML work sits on top of software engineering, data systems, and
+              deployment.
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="bg-blue-100 dark:bg-blue-900/20 rounded-lg p-6 mb-4">
-                <FaCode className="text-3xl text-blue-600 mx-auto mb-2" aria-hidden="true" />
+              <div className="bg-red-100 dark:bg-red-900/20 rounded-lg p-6 mb-4">
+                <FaBrain
+                  className="text-3xl text-red-600 mx-auto mb-2"
+                  aria-hidden="true"
+                />
                 <h3 className="font-semibold text-[var(--ds-gray-900)]">
-                  Frontend
+                  AI / ML
                 </h3>
               </div>
               <p className="text-sm text-[var(--ds-gray-900)]">
-                React, Next.js, TypeScript, Tailwind CSS
+                PyTorch, TensorFlow, scikit-learn, computer vision, RAG
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-teal-100 dark:bg-teal-900/20 rounded-lg p-6 mb-4">
+                <FaEye
+                  className="text-3xl text-teal-600 mx-auto mb-2"
+                  aria-hidden="true"
+                />
+                <h3 className="font-semibold text-[var(--ds-gray-900)]">
+                  Data
+                </h3>
+              </div>
+              <p className="text-sm text-[var(--ds-gray-900)]">
+                Python, pandas, SQL, PostgreSQL, MongoDB
               </p>
             </div>
 
             <div className="text-center">
               <div className="bg-green-100 dark:bg-green-900/20 rounded-lg p-6 mb-4">
-                <FaServer className="text-3xl text-green-600 mx-auto mb-2" aria-hidden="true" />
+                <FaServer
+                  className="text-3xl text-green-600 mx-auto mb-2"
+                  aria-hidden="true"
+                />
                 <h3 className="font-semibold text-[var(--ds-gray-900)]">
                   Backend
                 </h3>
               </div>
               <p className="text-sm text-[var(--ds-gray-900)]">
-                Node.js, NestJS, Python, PostgreSQL
+                FastAPI, Flask, REST APIs, Docker
               </p>
             </div>
 
             <div className="text-center">
-              <div className="bg-purple-100 dark:bg-purple-900/20 rounded-lg p-6 mb-4">
-                <FaMobile className="text-3xl text-purple-600 mx-auto mb-2" aria-hidden="true" />
+              <div className="bg-blue-100 dark:bg-blue-900/20 rounded-lg p-6 mb-4">
+                <FaCode
+                  className="text-3xl text-blue-600 mx-auto mb-2"
+                  aria-hidden="true"
+                />
                 <h3 className="font-semibold text-[var(--ds-gray-900)]">
-                  Mobile
+                  Software
                 </h3>
               </div>
               <p className="text-sm text-[var(--ds-gray-900)]">
-                React Native, Flutter, Mobile APIs
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-red-100 dark:bg-red-900/20 rounded-lg p-6 mb-4">
-                <FaBrain className="text-3xl text-red-600 mx-auto mb-2" aria-hidden="true" />
-                <h3 className="font-semibold text-[var(--ds-gray-900)]">
-                  AI/ML
-                </h3>
-              </div>
-              <p className="text-sm text-[var(--ds-gray-900)]">
-                TensorFlow, Scikit-learn, Data Analysis
+                TypeScript, Next.js, Git, AWS, CI/CD
               </p>
             </div>
           </div>
